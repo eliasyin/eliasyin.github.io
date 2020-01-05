@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-01-05T13:17:30.513Z</updated>
+  <updated>2020-01-05T16:12:43.955Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,74 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>archive</title>
+    <link href="https://eliasyin.github.io/2020/01/06/archives/index/"/>
+    <id>https://eliasyin.github.io/2020/01/06/archives/index/</id>
+    <published>2020-01-05T16:09:43.000Z</published>
+    <updated>2020-01-05T16:12:43.955Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>user</title>
+    <link href="https://eliasyin.github.io/2020/01/05/about/index/"/>
+    <id>https://eliasyin.github.io/2020/01/05/about/index/</id>
+    <published>2020-01-05T14:04:47.000Z</published>
+    <updated>2020-01-05T16:13:06.512Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;关于我&quot;&gt;&lt;a href=&quot;#关于我&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>tags</title>
+    <link href="https://eliasyin.github.io/2020/01/05/tags/index/"/>
+    <id>https://eliasyin.github.io/2020/01/05/tags/index/</id>
+    <published>2020-01-05T14:04:15.000Z</published>
+    <updated>2020-01-05T16:13:31.148Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>categories</title>
+    <link href="https://eliasyin.github.io/2020/01/05/categories/index/"/>
+    <id>https://eliasyin.github.io/2020/01/05/categories/index/</id>
+    <published>2020-01-05T14:00:25.000Z</published>
+    <updated>2020-01-05T16:13:19.540Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>你好！</title>
