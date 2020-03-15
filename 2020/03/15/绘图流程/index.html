@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="可视化,matplotlib," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="参考：The Lifecycle of a Plot — Matplotlib 3.1.2 documentation这篇也值得一看：Effectively Using Matplotlib - Practical Business Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://eliasyin.github.io/2020/01/05/hello-world/index.html">
+<meta property="og:title" content="绘图流程">
+<meta property="og:url" content="https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="参考：The Lifecycle of a Plot — Matplotlib 3.1.2 documentation这篇也值得一看：Effectively Using Matplotlib - Practical Business Python">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-05T09:22:25.802Z">
-<meta property="article:modified_time" content="2020-01-05T14:42:21.309Z">
+<meta property="article:published_time" content="2020-03-15T05:14:08.000Z">
+<meta property="article:modified_time" content="2020-03-15T05:15:30.652Z">
 <meta property="article:author" content="elias yin">
+<meta property="article:tag" content="可视化">
+<meta property="article:tag" content="matplotlib">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/01/05/hello-world/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/03/15/绘图流程/"/>
 
 
 
 
 
-  <title>Hello World | 远游的房间</title>
+  <title>绘图流程 | 远游的房间</title>
   
 
 
@@ -183,7 +185,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -193,7 +195,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -203,7 +205,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -213,7 +215,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -223,7 +225,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -264,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/01/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -281,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">绘图流程</h1>
         
 
         <div class="post-meta">
@@ -293,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-05T17:22:25+08:00">
-                2020-01-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T13:14:08+08:00">
+                2020-03-15
               </time>
             
 
@@ -309,12 +311,34 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-01-05T22:42:21+08:00">
-                2020-01-05
+              <time title="Post modified" itemprop="dateModified" datetime="2020-03-15T13:15:30+08:00">
+                2020-03-15
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">数据可视化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -348,22 +372,24 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p>参考：<a href="https://matplotlib.org/tutorials/introductory/lifecycle.html#sphx-glr-tutorials-introductory-lifecycle-py" target="_blank" rel="noopener">The Lifecycle of a Plot — Matplotlib 3.1.2 documentation</a><br>这篇也值得一看：<br><a href="https://pbpython.com/effective-matplotlib.html" target="_blank" rel="noopener">Effectively Using Matplotlib - Practical Business Python</a></p>
 <a id="more"></a>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-数据提取，创建画布、坐标系对象"><a href="#1-数据提取，创建画布、坐标系对象" class="headerlink" title="1.数据提取，创建画布、坐标系对象"></a>1.数据提取，创建画布、坐标系对象</h3><h4 id="1-1-figure-amp-subplot"><a href="#1-1-figure-amp-subplot" class="headerlink" title="1.1 figure &amp; subplot"></a>1.1 figure &amp; subplot</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = plt.subplot(<span class="number">221</span>) <span class="comment"># 添加子图</span></span><br><span class="line"><span class="comment"># 子图内容的添加...</span></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-subplots"><a href="#1-2-subplots" class="headerlink" title="1.2 subplots"></a>1.2 subplots</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="2-风格选取"><a href="#2-风格选取" class="headerlink" title="2.风格选取"></a>2.风格选取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(plt.style.available)</span><br><span class="line">plt.style.use(<span class="string">'fivethirtyeight'</span>)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="3-根据需求定制参数"><a href="#3-根据需求定制参数" class="headerlink" title="3.根据需求定制参数"></a>3.根据需求定制参数</h3><h4 id="3-1旋转坐标轴标签"><a href="#3-1旋转坐标轴标签" class="headerlink" title="3.1旋转坐标轴标签"></a>3.1旋转坐标轴标签</h4><p> 先获取x_labels对象，然后使用setp函数设置旋转</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.barh(group_names, group_data)</span><br><span class="line">labels = ax.get_xticklabels()</span><br><span class="line">plt.setp(labels, rotation=<span class="number">45</span>, horizontalalignment=<span class="string">'right'</span>)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h4 id="3-2格式化坐标参数"><a href="#3-2格式化坐标参数" class="headerlink" title="3.2格式化坐标参数"></a>3.2格式化坐标参数</h4><p>创建一个函数，将输入的的数字转换为字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">currency</span><span class="params">(x, pos)</span>:</span></span><br><span class="line">    <span class="string">"""The two args are the value and tick position"""</span></span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">1e6</span>:</span><br><span class="line">        s = <span class="string">'$&#123;:1.1f&#125;M'</span>.format(x*<span class="number">1e-6</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        s = <span class="string">'$&#123;:1.0f&#125;K'</span>.format(x*<span class="number">1e-3</span>)</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line">formatter = FuncFormatter(currency)</span><br></pre></td></tr></table></figure>
+<p>调用格式化函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">6</span>, <span class="number">8</span>))</span><br><span class="line">ax.barh(group_names, group_data)</span><br><span class="line">labels = ax.get_xticklabels()</span><br><span class="line">plt.setp(labels, rotation=<span class="number">45</span>, horizontalalignment=<span class="string">'right'</span>)</span><br><span class="line"></span><br><span class="line">ax.set(xlim=[<span class="number">-10000</span>, <span class="number">140000</span>], xlabel=<span class="string">'Total Revenue'</span>, ylabel=<span class="string">'Company'</span>,</span><br><span class="line">       title=<span class="string">'Company Revenue'</span>)</span><br><span class="line">ax.xaxis.set_major_formatter(formatter)</span><br></pre></td></tr></table></figure>
 
+<h4 id="3-3在坐标系上添加其他元素"><a href="#3-3在坐标系上添加其他元素" class="headerlink" title="3.3在坐标系上添加其他元素"></a>3.3在坐标系上添加其他元素</h4><h3 id="4-保存图片"><a href="#4-保存图片" class="headerlink" title="4.保存图片"></a>4.保存图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(fig.canvas.get_supported_filetypes())</span><br><span class="line"><span class="comment"># fig.savefig('sales.png', transparent=False, dpi=80, bbox_inches="tight")</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -383,7 +409,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/01/05/hello-world/" title="Hello World">https://eliasyin.github.io/2020/01/05/hello-world/</a>
+    <a href="https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/" title="绘图流程">https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -396,6 +422,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
+          
+            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
+          
+        </div>
+      
 
       
       
@@ -405,15 +439,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/15/annotate/" rel="next" title="annotate">
+                <i class="fa fa-chevron-left"></i> annotate
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/05/test-my-site/" rel="prev" title="test_my_site">
-                test_my_site <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -484,7 +518,7 @@
                 alt="elias yin" />
             
               <p class="site-author-name" itemprop="name">elias yin</p>
-              <p class="site-description motion-element" itemprop="description">记录·分享</p>
+              <p class="site-description motion-element" itemprop="description">记录•分享</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -492,14 +526,23 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
             
 
             
@@ -507,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -547,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据提取，创建画布、坐标系对象"><span class="nav-number">1.</span> <span class="nav-text">1.数据提取，创建画布、坐标系对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-figure-amp-subplot"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 figure &amp; subplot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-subplots"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 subplots</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-风格选取"><span class="nav-number">2.</span> <span class="nav-text">2.风格选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-根据需求定制参数"><span class="nav-number">3.</span> <span class="nav-text">3.根据需求定制参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1旋转坐标轴标签"><span class="nav-number">3.1.</span> <span class="nav-text">3.1旋转坐标轴标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2格式化坐标参数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2格式化坐标参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3在坐标系上添加其他元素"><span class="nav-number">3.3.</span> <span class="nav-text">3.3在坐标系上添加其他元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-保存图片"><span class="nav-number">4.</span> <span class="nav-text">4.保存图片</span></a></li></ol></div>
             
 
           </div>

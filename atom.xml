@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-01-05T13:17:30.513Z</updated>
+  <updated>2020-03-15T05:15:30.652Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -17,11 +17,127 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>绘图流程</title>
+    <link href="https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/"/>
+    <id>https://eliasyin.github.io/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/</id>
+    <published>2020-03-15T05:14:08.000Z</published>
+    <updated>2020-03-15T05:15:30.652Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;参考：&lt;a href=&quot;https://matplotlib.org/tutorials/introductory/lifecycle.html#sphx-glr-tutorials-introductory-lifecycle-py&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;The Lifecycle of a Plot — Matplotlib 3.1.2 documentation&lt;/a&gt;&lt;br&gt;这篇也值得一看：&lt;br&gt;&lt;a href=&quot;https://pbpython.com/effective-matplotlib.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Effectively Using Matplotlib - Practical Business Python&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+    
+      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>annotate</title>
+    <link href="https://eliasyin.github.io/2020/03/15/annotate/"/>
+    <id>https://eliasyin.github.io/2020/03/15/annotate/</id>
+    <published>2020-03-15T05:07:33.000Z</published>
+    <updated>2020-03-15T05:13:24.698Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-箭头&quot;&gt;&lt;a href=&quot;#1-箭头&quot; class=&quot;headerlink&quot; title=&quot;1.箭头&quot;&gt;&lt;/a&gt;1.箭头&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+    
+      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不同实现方式的对比</title>
+    <link href="https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
+    <id>https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
+    <published>2020-03-15T04:54:59.000Z</published>
+    <updated>2020-03-15T05:06:16.487Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;只有一张图，那么有两种实现方式&quot;&gt;&lt;a href=&quot;#只有一张图，那么有两种实现方式&quot; class=&quot;headerlink&quot; title=&quot;只有一张图，那么有两种实现方式&quot;&gt;&lt;/a&gt;只有一张图，那么有两种实现方式&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+    
+      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fig.show() 与 plt.show()</title>
+    <link href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/"/>
+    <id>https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/</id>
+    <published>2020-03-15T04:46:41.000Z</published>
+    <updated>2020-03-15T04:52:32.227Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;To follow up a bit, there is an unfortunate name collision here, but plt.show() and fig.show() map to very different things at the GUI level&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+    
+      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>认识matplotlib</title>
+    <link href="https://eliasyin.github.io/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/"/>
+    <id>https://eliasyin.github.io/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/</id>
+    <published>2020-03-15T04:24:34.000Z</published>
+    <updated>2020-03-15T04:44:58.994Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a&gt;1.概述&lt;/h3&gt;&lt;p&gt;  matplotlib中的一切都是按照层次结构组织的。最顶级的一层是由matplotlib.pyplot模块提供的状态机环境(state-machine environment)。在这一层，可以调用简单的函数想当前图形(figure)中增加plot元素(plot element)，比如线条、图片(images)、文本等。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+    
+      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+  </entry>
+  
+  <entry>
     <title>你好！</title>
     <link href="https://eliasyin.github.io/2020/01/05/%E4%BD%A0%E5%A5%BD%EF%BC%81/"/>
     <id>https://eliasyin.github.io/2020/01/05/%E4%BD%A0%E5%A5%BD%EF%BC%81/</id>
     <published>2020-01-05T13:14:01.000Z</published>
-    <updated>2020-01-05T13:17:30.513Z</updated>
+    <updated>2020-03-15T04:38:34.464Z</updated>
     
     <summary type="html">
     
@@ -38,38 +154,6 @@
     
     
       <category term="测试" scheme="https://eliasyin.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test_my_site</title>
-    <link href="https://eliasyin.github.io/2020/01/05/test-my-site/"/>
-    <id>https://eliasyin.github.io/2020/01/05/test-my-site/</id>
-    <published>2020-01-05T11:08:02.000Z</published>
-    <updated>2020-01-05T11:08:02.614Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://eliasyin.github.io/2020/01/05/hello-world/"/>
-    <id>https://eliasyin.github.io/2020/01/05/hello-world/</id>
-    <published>2020-01-05T09:22:25.802Z</published>
-    <updated>2020-01-05T14:42:21.309Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
