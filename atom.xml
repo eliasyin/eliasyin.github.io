@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-03-15T05:15:30.652Z</updated>
+  <updated>2020-06-17T14:43:58.342Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python小波变换库的一个问题</title>
+    <link href="https://eliasyin.github.io/2020/06/17/python%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E5%BA%93%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/"/>
+    <id>https://eliasyin.github.io/2020/06/17/python%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E5%BA%93%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</id>
+    <published>2020-06-17T14:35:55.000Z</published>
+    <updated>2020-06-17T14:43:58.342Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个沙雕问题&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据预处理" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="小波变换" scheme="https://eliasyin.github.io/tags/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2/"/>
+    
+      <category term="信号处理" scheme="https://eliasyin.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小波变换降噪、消除基准漂移</title>
+    <link href="https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/"/>
+    <id>https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/</id>
+    <published>2020-06-17T14:26:17.000Z</published>
+    <updated>2020-06-17T14:43:17.820Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;单级分解与重构 &amp;amp; 多级分解与重构 &amp;amp; 如何利用小波分解降噪&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据预处理" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="小波变换" scheme="https://eliasyin.github.io/tags/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2/"/>
+    
+      <category term="信号处理" scheme="https://eliasyin.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>绘图流程</title>
@@ -44,11 +90,11 @@
     <link href="https://eliasyin.github.io/2020/03/15/annotate/"/>
     <id>https://eliasyin.github.io/2020/03/15/annotate/</id>
     <published>2020-03-15T05:07:33.000Z</published>
-    <updated>2020-03-15T05:13:24.698Z</updated>
+    <updated>2020-06-17T14:44:57.257Z</updated>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-箭头&quot;&gt;&lt;a href=&quot;#1-箭头&quot; class=&quot;headerlink&quot; title=&quot;1.箭头&quot;&gt;&lt;/a&gt;1.箭头&lt;/h3&gt;
+      &lt;p&gt;添加标注&lt;/p&gt;
     
     </summary>
     
@@ -67,11 +113,11 @@
     <link href="https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
     <id>https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
     <published>2020-03-15T04:54:59.000Z</published>
-    <updated>2020-03-15T05:06:16.487Z</updated>
+    <updated>2020-06-17T14:46:12.182Z</updated>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;只有一张图，那么有两种实现方式&quot;&gt;&lt;a href=&quot;#只有一张图，那么有两种实现方式&quot; class=&quot;headerlink&quot; title=&quot;只有一张图，那么有两种实现方式&quot;&gt;&lt;/a&gt;只有一张图，那么有两种实现方式&lt;/h3&gt;
+      &lt;p&gt;不同实现方式的对比&lt;/p&gt;
     
     </summary>
     
@@ -90,12 +136,11 @@
     <link href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/"/>
     <id>https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/</id>
     <published>2020-03-15T04:46:41.000Z</published>
-    <updated>2020-03-15T04:52:32.227Z</updated>
+    <updated>2020-06-17T14:47:47.906Z</updated>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;To follow up a bit, there is an unfortunate name collision here, but plt.show() and fig.show() map to very different things at the GUI level&lt;br&gt;
+      &lt;p&gt;两者区别主要在应用场景&lt;/p&gt;
     
     </summary>
     

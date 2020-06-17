@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="可视化,matplotlib," />
+  <meta name="keywords" content="小波变换,信号处理," />
 
 
 
@@ -81,22 +81,19 @@
 
 
 
-<meta name="description" content="两者区别主要在应用场景">
+<meta name="description" content="单级分解与重构 &amp; 多级分解与重构 &amp; 如何利用小波分解降噪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fig.show() 与 plt.show()">
-<meta property="og:url" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/index.html">
+<meta property="og:title" content="小波变换降噪、消除基准漂移">
+<meta property="og:url" content="https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="两者区别主要在应用场景">
+<meta property="og:description" content="单级分解与重构 &amp; 多级分解与重构 &amp; 如何利用小波分解降噪">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png">
-<meta property="og:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig2.png">
-<meta property="article:published_time" content="2020-03-15T04:46:41.000Z">
-<meta property="article:modified_time" content="2020-06-17T14:47:47.906Z">
+<meta property="article:published_time" content="2020-06-17T14:26:17.000Z">
+<meta property="article:modified_time" content="2020-06-17T14:43:17.820Z">
 <meta property="article:author" content="elias yin">
-<meta property="article:tag" content="可视化">
-<meta property="article:tag" content="matplotlib">
+<meta property="article:tag" content="小波变换">
+<meta property="article:tag" content="信号处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png">
 
 
 
@@ -126,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/03/15/fig-show-与-plt-show/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/06/17/小波变换降噪、消除基准漂移/"/>
 
 
 
 
 
-  <title>fig.show() 与 plt.show() | 远游的房间</title>
+  <title>小波变换降噪、消除基准漂移 | 远游的房间</title>
   
 
 
@@ -269,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -286,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">fig.show() 与 plt.show()</h1>
+          <h1 class="post-title" itemprop="name headline">小波变换降噪、消除基准漂移</h1>
         
 
         <div class="post-meta">
@@ -298,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T12:46:41+08:00">
-                2020-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-17T22:26:17+08:00">
+                2020-06-17
               </time>
             
 
@@ -314,7 +311,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-06-17T22:47:47+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-06-17T22:43:17+08:00">
                 2020-06-17
               </time>
             
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">数据预处理</span>
                   </a>
                 </span>
 
@@ -375,30 +372,18 @@
       
 
       
-        <p>两者区别主要在应用场景</p>
- <a id="more"></a>
+        <p>单级分解与重构 &amp; 多级分解与重构 &amp; 如何利用小波分解降噪</p>
+<a id="more"></a>
 
-<blockquote>
-<p>To follow up a bit, there is an unfortunate name collision here, but plt.show() and fig.show() map to very different things at the GUI level  </p>
-</blockquote>
-<blockquote>
-<ul>
-<li><p>plt.show -&gt; “make sure all the figures are visible and then run the main loop to block the python process (unless we are interactive, then rely on something else to make sure the event loop gets run every-so-often)”</p>
-</li>
-<li><p>fig.show -&gt; “tell the GUI framework to put the window on the screen but do not try to manage the event loop”</p>
-</li>
-</ul>
-<p>In general you don’t have to actually use fig.show as plt.show will call it on all figures it knows about for you. This is convenient and clearly the correct behavior, but does add to the confusion.</p>
-</blockquote>
-<h3 id="使用上的区别"><a href="#使用上的区别" class="headerlink" title="使用上的区别"></a>使用上的区别</h3><p>  如果在一段程序最终使用fig.show()的话，运行程序，绘制的图片闪退；但是使用plt.show()就能得到稳定显示的图片。<br>  其实fig.show()可以用于IPython。在IPython环境下，调用plt.show()是不能显示出绘制的图像的，但是调用fig.show()就可以显示出图像。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: ax.plot([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">Out[<span class="number">3</span>]: [&lt;matplotlib.lines.Line2D at <span class="number">0x2244914a550</span>&gt;]</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: fig.show()</span><br></pre></td></tr></table></figure>
-<img src="/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png" class="">
+<p>注：这里使用的ch2是一段脉搏信号数据</p>
+<h3 id="1-single-level"><a href="#1-single-level" class="headerlink" title="1.single level"></a>1.single level</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">s = ch2[:<span class="number">1000</span>]</span><br><span class="line">a = s</span><br><span class="line">N = len(a)</span><br><span class="line">db6 = pywt.Wavelet(<span class="string">'db6'</span>)</span><br><span class="line">mode = <span class="string">'symmetric'</span> <span class="comment">#'smooth'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## single level使用dwt分解信号</span></span><br><span class="line">[ca, cd] = pywt.dwt(a, db6, mode=mode)</span><br><span class="line"></span><br><span class="line"><span class="comment">## single level使用idwt重建信号</span></span><br><span class="line">rec = pywt.idwt(ca, cd, <span class="string">'db6'</span>, mode=mode)</span><br><span class="line">rec_a = pywt.idwt(ca, <span class="literal">None</span>, db6, mode=mode)</span><br><span class="line">rec_d = pywt.idwt(<span class="literal">None</span>, cd, db6, mode=mode)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">2</span>, figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">0</span>].plot(a)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].plot(rec)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">0</span>].plot(rec_a)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].plot(rec_d)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-<p>添加新的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: ax.plot([<span class="number">1</span>,<span class="number">3</span>])</span><br><span class="line">Out[<span class="number">5</span>]: [&lt;matplotlib.lines.Line2D at <span class="number">0x224492efeb8</span>&gt;]</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: fig.show()</span><br></pre></td></tr></table></figure>
-<img src="/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig2.png" class="">
 
-<p>ref：<br><a href="https://github.com/matplotlib/matplotlib/issues/13101" target="_blank" rel="noopener">fig.show() doesn’t block · Issue #13101 · matplotlib/matplotlib · GitHub</a></p>
+<h3 id="2-multi-level"><a href="#2-multi-level" class="headerlink" title="2.multi-level"></a>2.multi-level</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">s = ch2[<span class="number">1</span>:<span class="number">5000</span>]</span><br><span class="line">a = s</span><br><span class="line">N = len(a)</span><br><span class="line">db6 = pywt.Wavelet(<span class="string">'db6'</span>)</span><br><span class="line"></span><br><span class="line">mode =  <span class="string">'reflect'</span></span><br><span class="line"><span class="comment">#'symmetric' #'smooth'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## multi-level使用wavedec分解信号</span></span><br><span class="line">coeffs = pywt.wavedec(a, db6, level=<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用zeros_like忽略特定系数</span></span><br><span class="line"><span class="comment"># coeffs[0] = np.zeros_like(coeffs[0])</span></span><br><span class="line">coeffs[<span class="number">6</span>] = np.zeros_like(coeffs[<span class="number">6</span>])</span><br><span class="line"><span class="comment"># multi-level使用waverec重建信号</span></span><br><span class="line">rec_s = pywt.waverec(coeffs, db6, mode=mode)</span><br><span class="line">    </span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">2</span>, figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">0</span>].plot(s)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].plot(coeffs[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">0</span>].plot(coeffs[<span class="number">2</span>])</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].plot(rec_s)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="计算最大useful-level并降噪"><a href="#计算最大useful-level并降噪" class="headerlink" title="计算最大useful level并降噪"></a>计算最大useful level并降噪</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ch2 = ch2[<span class="number">10</span>:<span class="number">2000</span>]</span><br><span class="line">data = ch2</span><br><span class="line">w = pywt.Wavelet(<span class="string">'db8'</span>) <span class="comment"># 选用Daubechies8小波</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算出分解的最大useful level</span></span><br><span class="line">maxlev = pywt.dwt_max_level(len(data), w.dec_len)</span><br><span class="line">print(<span class="string">"maximum level is "</span> + str(maxlev))</span><br><span class="line"></span><br><span class="line">threshold = <span class="number">0.3</span> <span class="comment"># Threshold for filtering</span></span><br><span class="line"><span class="comment"># Decompose into wavelet components, to the level selected:</span></span><br><span class="line">coeffs = pywt.wavedec(data, <span class="string">'db8'</span>, level=maxlev) <span class="comment"># 将信号进行小波分解</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># threshold函数，默认soft模式，小于value的值置零，大于的值减去value</span></span><br><span class="line"><span class="comment"># hard模式类似relu函数</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(coeffs)):</span><br><span class="line">    coeffs[i] = pywt.threshold(coeffs[i], threshold*max(coeffs[i])) <span class="comment"># 将噪声滤波</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 信号重构</span></span><br><span class="line">denoise_ch = pywt.waverec(coeffs, <span class="string">'db8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># denoise_ch = pywt.threshold(ch2, 0, mode='soft')</span></span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">9</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">ax.plot(ch2)</span><br><span class="line">ax.plot(denoise_ch)</span><br><span class="line">ax.legend([<span class="string">'original pulse'</span>, <span class="string">'denoised pulse'</span>], loc=<span class="string">'upper right'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>参考：<br>1.<a href="https://pywavelets.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">PyWavelets - Wavelet Transforms in Python — PyWavelets Documentation</a><br>2.<a href="https://www.jianshu.com/p/56733f6c0a10" target="_blank" rel="noopener">一维离散小波变换函数使用总结 - 简书</a><br>3.<a href="https://blog.csdn.net/sinat_18131557/article/details/90449935" target="_blank" rel="noopener">多尺度小波分解Matlab/Python实现与原理分析_人工智能_sinat_18131557的博客-CSDN博客</a></p>
 
       
     </div>
@@ -419,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/" title="fig.show() 与 plt.show()">https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/</a>
+    <a href="https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/" title="小波变换降噪、消除基准漂移">https://eliasyin.github.io/2020/06/17/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E9%99%8D%E5%99%AA%E3%80%81%E6%B6%88%E9%99%A4%E5%9F%BA%E5%87%86%E6%BC%82%E7%A7%BB/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -434,9 +419,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
+            <a href="/tags/%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2/" rel="tag"># 小波变换</a>
           
-            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
+            <a href="/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" rel="tag"># 信号处理</a>
           
         </div>
       
@@ -449,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/" rel="next" title="认识matplotlib">
-                <i class="fa fa-chevron-left"></i> 认识matplotlib
+              <a href="/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/" rel="next" title="绘图流程">
+                <i class="fa fa-chevron-left"></i> 绘图流程
               </a>
             
           </div>
@@ -459,8 +444,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="prev" title="不同实现方式的对比">
-                不同实现方式的对比 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/17/python%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2%E5%BA%93%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/" rel="prev" title="python小波变换库的一个问题">
+                python小波变换库的一个问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -604,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用上的区别"><span class="nav-number">1.</span> <span class="nav-text">使用上的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-single-level"><span class="nav-number">1.</span> <span class="nav-text">1.single level</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-multi-level"><span class="nav-number">2.</span> <span class="nav-text">2.multi-level</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算最大useful-level并降噪"><span class="nav-number"></span> <span class="nav-text">计算最大useful level并降噪</span></a></div>
             
 
           </div>
