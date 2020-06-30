@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-06-17T14:43:58.342Z</updated>
+  <updated>2020-06-30T16:01:08.400Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>keras中的conv、maxpool方法中的padding=&#39;same&#39;在pytorch中的实现</title>
+    <link href="https://eliasyin.github.io/2020/06/30/keras%E4%B8%AD%E7%9A%84conv%E3%80%81maxpool%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84padding-same-%E5%9C%A8pytorch%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://eliasyin.github.io/2020/06/30/keras%E4%B8%AD%E7%9A%84conv%E3%80%81maxpool%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84padding-same-%E5%9C%A8pytorch%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/</id>
+    <published>2020-06-30T15:29:39.000Z</published>
+    <updated>2020-06-30T16:01:08.400Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近需要将一些用keras构建的模型在pytorch上复现，遇到了题目中的问题，经过一番研究，找到了合适的解决方案，特此记录&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
+    
+      <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
+    
+  </entry>
   
   <entry>
     <title>python小波变换库的一个问题</title>
