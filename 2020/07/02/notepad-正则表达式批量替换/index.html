@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="latex,something interesting," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="远游的房间" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="有如下几百行结果，需要在每个小数后边加上&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="notepad++ 正则表达式批量替换">
+<meta property="og:url" content="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/index.html">
+<meta property="og:site_name" content="远游的房间">
+<meta property="og:description" content="有如下几百行结果，需要在每个小数后边加上&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/img.png">
+<meta property="article:published_time" content="2020-07-02T08:58:09.000Z">
+<meta property="article:modified_time" content="2020-07-02T09:03:36.326Z">
+<meta property="article:author" content="elias yin">
+<meta property="article:tag" content="latex">
+<meta property="article:tag" content="something interesting">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/img.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://eliasyin.github.io/2020/07/02/notepad-正则表达式批量替换/"/>
+
+
+
+
+
+  <title>notepad++ 正则表达式批量替换 | 远游的房间</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远游的房间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="elias yin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远游的房间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">notepad++ 正则表达式批量替换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-02T16:58:09+08:00">
+                2020-07-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-07-02T17:03:36+08:00">
+                2020-07-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		
+		  <span class="post-meta-divider">|</span>
+		  <span id="busuanzi_value_page_pv"></span>次阅读
+		
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有如下几百行结果，需要在每个小数后边加上&amp;</p>
+<a id="more"></a>
+
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6417</span> 	<span class="number">0.6879</span> 	<span class="number">0.7619</span> 	<span class="number">0.5088</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">1</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6500</span> 	<span class="number">0.6663</span> 	<span class="number">0.6667</span> 	<span class="number">0.6316</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6583</span> 	<span class="number">0.6426</span> 	<span class="number">0.5873</span> 	<span class="number">0.7368</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">1</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6667</span> 	<span class="number">0.6587</span> 	<span class="number">0.6190</span> 	<span class="number">0.7193</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6667</span> 	<span class="number">0.6760</span> 	<span class="number">0.6667</span> 	<span class="number">0.6667</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6750</span> 	<span class="number">0.6051</span> 	<span class="number">0.4762</span> 	<span class="number">0.8947</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6833</span> 	<span class="number">0.6895</span> 	<span class="number">0.6984</span> 	<span class="number">0.6667</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">5</span>\#	&amp;<span class="number">0.6917</span> 	<span class="number">0.6716</span> 	<span class="number">0.6190</span> 	<span class="number">0.7719</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7000</span> 	<span class="number">0.7028</span> 	<span class="number">0.6825</span> 	<span class="number">0.7193</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7000</span> 	<span class="number">0.7444</span> 	<span class="number">0.8413</span> 	<span class="number">0.5439</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7083</span> 	<span class="number">0.7482</span> 	<span class="number">0.8254</span> 	<span class="number">0.5789</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7417</span> 	<span class="number">0.7607</span> 	<span class="number">0.7937</span> 	<span class="number">0.6842</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7417</span> 	<span class="number">0.7624</span> 	<span class="number">0.7937</span> 	<span class="number">0.6842</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7500</span> 	<span class="number">0.7695</span> 	<span class="number">0.7937</span> 	<span class="number">0.7018</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7583</span> 	<span class="number">0.7973</span> 	<span class="number">0.9048</span> 	<span class="number">0.5965</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7667</span> 	<span class="number">0.7878</span> 	<span class="number">0.8254</span> 	<span class="number">0.7018</span> \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7833</span> 	<span class="number">0.8056</span> 	<span class="number">0.8571</span> 	<span class="number">0.7018</span>\\</span><br></pre></td></tr></table></figure>
+
+<p>如果手动添加非常麻烦而且浪费时间，考虑使用notepad++的正则表达式替换功能</p>
+<h3 id="找到合适的正则表达式匹配小数"><a href="#找到合适的正则表达式匹配小数" class="headerlink" title="找到合适的正则表达式匹配小数"></a>找到合适的正则表达式匹配小数</h3><p>经过<a href="https://tool.oschina.net/regex/" target="_blank" rel="noopener">在线正则表达式测试</a>测试， <code>0.[0-9]+</code>能够正确匹配所有小数</p>
+<h3 id="使用notepad-的正则表达式匹配"><a href="#使用notepad-的正则表达式匹配" class="headerlink" title="使用notepad++的正则表达式匹配"></a>使用notepad++的正则表达式匹配</h3><p>reference:<a href="https://datacadamia.com/ide/notepad/replace" target="_blank" rel="noopener">Notepad++ - Replace with Regular Expression [Data and Co]</a><br>上边的表达式<code>0.[0-9]+</code>能够正确匹配所有小数，但是不能直接用于notepad++的匹配，因为notepad++中，用圆括号包裹正则表达式后，每个表达式才有一个索引，才能用于批量替换，所以使用<code>(0.[0-9]+)+</code>进行匹配，替换的表达式就是<code>\1\&amp;</code></p>
+<img src="/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/img.png" class="">
+
+<p>然后一个回车键，批量替换就完成了，舒服~</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6417</span>&amp; 	<span class="number">0.6879</span>&amp; 	<span class="number">0.7619</span>&amp; 	<span class="number">0.5088</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">1</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6500</span>&amp; 	<span class="number">0.6663</span>&amp; 	<span class="number">0.6667</span>&amp; 	<span class="number">0.6316</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6583</span>&amp; 	<span class="number">0.6426</span>&amp; 	<span class="number">0.5873</span>&amp; 	<span class="number">0.7368</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">1</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6667</span>&amp; 	<span class="number">0.6587</span>&amp; 	<span class="number">0.6190</span>&amp; 	<span class="number">0.7193</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6667</span>&amp; 	<span class="number">0.6760</span>&amp; 	<span class="number">0.6667</span>&amp; 	<span class="number">0.6667</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6750</span>&amp; 	<span class="number">0.6051</span>&amp; 	<span class="number">0.4762</span>&amp; 	<span class="number">0.8947</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">3</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.6833</span>&amp; 	<span class="number">0.6895</span>&amp; 	<span class="number">0.6984</span>&amp; 	<span class="number">0.6667</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">5</span>\#	&amp;<span class="number">0.6917</span>&amp; 	<span class="number">0.6716</span>&amp; 	<span class="number">0.6190</span>&amp; 	<span class="number">0.7719</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7000</span>&amp; 	<span class="number">0.7028</span>&amp; 	<span class="number">0.6825</span>&amp; 	<span class="number">0.7193</span>&amp; \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7000</span>&amp; 	<span class="number">0.7444</span>&amp; 	<span class="number">0.8413</span>&amp; 	<span class="number">0.5439</span>&amp; \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7083</span>&amp; 	<span class="number">0.7482</span>&amp; 	<span class="number">0.8254</span>&amp; 	<span class="number">0.5789</span>&amp; \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7417</span>&amp; 	<span class="number">0.7607</span>&amp; 	<span class="number">0.7937</span>&amp; 	<span class="number">0.6842</span>&amp; \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7417</span>&amp; 	<span class="number">0.7624</span>&amp; 	<span class="number">0.7937</span>&amp; 	<span class="number">0.6842</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7500</span>&amp; 	<span class="number">0.7695</span>&amp; 	<span class="number">0.7937</span>&amp; 	<span class="number">0.7018</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7583</span>&amp; 	<span class="number">0.7973</span>&amp; 	<span class="number">0.9048</span>&amp; 	<span class="number">0.5965</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">1</span>\#, <span class="number">2</span>\#, <span class="number">3</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7667</span>&amp; 	<span class="number">0.7878</span>&amp; 	<span class="number">0.8254</span>&amp; 	<span class="number">0.7018</span>&amp;  \\ </span><br><span class="line">   \hline</span><br><span class="line"><span class="number">0</span>\#, <span class="number">2</span>\#, <span class="number">4</span>\#, <span class="number">5</span>\#&amp;	<span class="number">0.7833</span>&amp; 	<span class="number">0.8056</span>&amp; 	<span class="number">0.8571</span>&amp; 	<span class="number">0.7018</span>&amp;\\</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    elias yin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/" title="notepad++ 正则表达式批量替换">https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/latex/" rel="tag"># latex</a>
+          
+            <a href="/tags/something-interesting/" rel="tag"># something interesting</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/30/keras%E4%B8%AD%E7%9A%84conv%E3%80%81maxpool%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84padding-same-%E5%9C%A8pytorch%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="keras中的conv、maxpool方法中的padding='same'在pytorch中的实现">
+                <i class="fa fa-chevron-left"></i> keras中的conv、maxpool方法中的padding='same'在pytorch中的实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.jpg"
+                alt="elias yin" />
+            
+              <p class="site-author-name" itemprop="name">elias yin</p>
+              <p class="site-description motion-element" itemprop="description">记录•分享</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#找到合适的正则表达式匹配小数"><span class="nav-number">1.</span> <span class="nav-text">找到合适的正则表达式匹配小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用notepad-的正则表达式匹配"><span class="nav-number">2.</span> <span class="nav-text">使用notepad++的正则表达式匹配</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">elias yin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

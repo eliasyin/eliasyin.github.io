@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-06-30T16:01:08.400Z</updated>
+  <updated>2020-07-02T09:03:36.326Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>notepad++ 正则表达式批量替换</title>
+    <link href="https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/"/>
+    <id>https://eliasyin.github.io/2020/07/02/notepad-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2/</id>
+    <published>2020-07-02T08:58:09.000Z</published>
+    <updated>2020-07-02T09:03:36.326Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有如下几百行结果，需要在每个小数后边加上&amp;amp;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="效率" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87/"/>
+    
+    
+      <category term="latex" scheme="https://eliasyin.github.io/tags/latex/"/>
+    
+      <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
+    
+  </entry>
   
   <entry>
     <title>keras中的conv、maxpool方法中的padding=&#39;same&#39;在pytorch中的实现</title>
