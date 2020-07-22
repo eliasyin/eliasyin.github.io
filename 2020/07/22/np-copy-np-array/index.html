@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="可视化,matplotlib," />
+  <meta name="keywords" content="matplotlib,numpy,opencv," />
 
 
 
@@ -81,22 +81,20 @@
 
 
 
-<meta name="description" content="两者区别主要在应用场景">
+<meta name="description" content="今天在对opencv读取的图像(np.array类型)进行截取时，踩到了这个坑.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fig.show() 与 plt.show()">
-<meta property="og:url" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/index.html">
+<meta property="og:title" content="np.copy np.array">
+<meta property="og:url" content="https://eliasyin.github.io/2020/07/22/np-copy-np-array/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="两者区别主要在应用场景">
+<meta property="og:description" content="今天在对opencv读取的图像(np.array类型)进行截取时，踩到了这个坑.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png">
-<meta property="og:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig2.png">
-<meta property="article:published_time" content="2020-03-15T04:46:41.000Z">
-<meta property="article:modified_time" content="2020-06-17T14:47:47.906Z">
+<meta property="article:published_time" content="2020-07-22T15:59:06.000Z">
+<meta property="article:modified_time" content="2020-07-22T16:00:05.790Z">
 <meta property="article:author" content="elias yin">
-<meta property="article:tag" content="可视化">
 <meta property="article:tag" content="matplotlib">
+<meta property="article:tag" content="numpy">
+<meta property="article:tag" content="opencv">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/03/15/fig-show-与-plt-show/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/07/22/np-copy-np-array/"/>
 
 
 
 
 
-  <title>fig.show() 与 plt.show() | 远游的房间</title>
+  <title>np.copy np.array | 远游的房间</title>
   
 
 
@@ -269,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/07/22/np-copy-np-array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -286,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">fig.show() 与 plt.show()</h1>
+          <h1 class="post-title" itemprop="name headline">np.copy np.array</h1>
         
 
         <div class="post-meta">
@@ -298,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T12:46:41+08:00">
-                2020-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-22T23:59:06+08:00">
+                2020-07-22
               </time>
             
 
@@ -314,8 +312,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-06-17T22:47:47+08:00">
-                2020-06-17
+              <time title="Post modified" itemprop="dateModified" datetime="2020-07-23T00:00:05+08:00">
+                2020-07-23
               </time>
             
           </span>
@@ -333,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">数据预处理</span>
                   </a>
                 </span>
 
@@ -375,31 +373,21 @@
       
 
       
-        <p>两者区别主要在应用场景</p>
+        <p>今天在对opencv读取的图像(np.array类型)进行截取时，踩到了这个坑.</p>
  <a id="more"></a>
 
-<blockquote>
-<p>To follow up a bit, there is an unfortunate name collision here, but plt.show() and fig.show() map to very different things at the GUI level  </p>
-</blockquote>
-<blockquote>
-<ul>
-<li><p>plt.show -&gt; “make sure all the figures are visible and then run the main loop to block the python process (unless we are interactive, then rely on something else to make sure the event loop gets run every-so-often)”</p>
-</li>
-<li><p>fig.show -&gt; “tell the GUI framework to put the window on the screen but do not try to manage the event loop”</p>
-</li>
-</ul>
-<p>In general you don’t have to actually use fig.show as plt.show will call it on all figures it knows about for you. This is convenient and clearly the correct behavior, but does add to the confusion.</p>
-</blockquote>
-<h3 id="使用上的区别"><a href="#使用上的区别" class="headerlink" title="使用上的区别"></a>使用上的区别</h3><p>  如果在一段程序最终使用fig.show()的话，运行程序，绘制的图片闪退；但是使用plt.show()就能得到稳定显示的图片。<br>  其实fig.show()可以用于IPython。在IPython环境下，调用plt.show()是不能显示出绘制的图像的，但是调用fig.show()就可以显示出图像。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: ax.plot([<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line">Out[<span class="number">3</span>]: [&lt;matplotlib.lines.Line2D at <span class="number">0x2244914a550</span>&gt;]</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: fig.show()</span><br></pre></td></tr></table></figure>
-<img src="/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig1.png" class="">
 
-<p>添加新的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: ax.plot([<span class="number">1</span>,<span class="number">3</span>])</span><br><span class="line">Out[<span class="number">5</span>]: [&lt;matplotlib.lines.Line2D at <span class="number">0x224492efeb8</span>&gt;]</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: fig.show()</span><br></pre></td></tr></table></figure>
-<img src="/2020/03/15/fig-show-%E4%B8%8E-plt-show/fig2.png" class="">
 
-<p>ref：<br><a href="https://github.com/matplotlib/matplotlib/issues/13101" target="_blank" rel="noopener">fig.show() doesn’t block · Issue #13101 · matplotlib/matplotlib · GitHub</a></p>
+<h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>因为项目需要，我需要用opencv读取人脸图像并截取其中的一部分进行后续的处理，但是运行下边的程序，绘制出来的blk一片白….我一度以为是程序出了问题，反复检查没找到原因,,,直到我想起来array好像是共享内存的…..</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(file_path)</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line">landmarks = get_landmarks(img) <span class="comment"># 检测图像的关键点坐标</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取区域的半边长</span></span><br><span class="line">margin = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#眉心坐标</span></span><br><span class="line">x = int((landmarks[<span class="number">21</span>, <span class="number">0</span>] + landmarks[<span class="number">22</span>, <span class="number">0</span>])/<span class="number">2</span>)</span><br><span class="line">y = int((landmarks[<span class="number">21</span>, <span class="number">1</span>] + landmarks[<span class="number">22</span>, <span class="number">1</span>])/<span class="number">2</span>)</span><br><span class="line">blk1 = np.copy(img[y-margin:y+margin,x-margin:x+margin])</span><br><span class="line"><span class="comment"># 眉心</span></span><br><span class="line">cv2.fillConvexPoly(img, cv2.convexHull(</span><br><span class="line">    np.array(([[x-margin, y-margin],</span><br><span class="line">                    [x-margin, y+margin],</span><br><span class="line">                    [x+margin, y-margin],</span><br><span class="line">                    [x+margin, y+margin]]</span><br><span class="line">                    ))), (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br><span class="line">fig ,ax = plt.subplots()</span><br><span class="line">ax.imshow(img)</span><br><span class="line"><span class="comment"># ax.axis('off')</span></span><br><span class="line">plt.show()</span><br><span class="line">fig ,ax = plt.subplots()</span><br><span class="line">ax.imshow(blk1)</span><br><span class="line"><span class="comment"># ax.axis('off')</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
+<h3 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h3><p>numpy的array是共享内存的，示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">b = a</span><br><span class="line">print(<span class="string">'a: '</span>, a, <span class="string">'b: '</span>, b)</span><br><span class="line">a[<span class="number">0</span>] = <span class="number">5</span></span><br><span class="line">print(<span class="string">'a: '</span>, a, <span class="string">'b: '</span>, b)</span><br></pre></td></tr></table></figure>
+<p>我得到的输出:</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a:  [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>] b:  [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br><span class="line">a:  [<span class="number">5</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>] b:  [<span class="number">5</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<p>所以我上边程序里截取不成功的原因是fillConvexPoly修改了截取区域的图像….</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>使用np.copy为截取的区域开辟新的内存空间</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blk1 = np.copy(img[y-<span class="built_in">margin</span>:y+<span class="built_in">margin</span>,x-<span class="built_in">margin</span>:x+<span class="built_in">margin</span>])</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -419,7 +407,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/" title="fig.show() 与 plt.show()">https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/</a>
+    <a href="https://eliasyin.github.io/2020/07/22/np-copy-np-array/" title="np.copy np.array">https://eliasyin.github.io/2020/07/22/np-copy-np-array/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -434,9 +422,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
-          
             <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
+          
+            <a href="/tags/numpy/" rel="tag"># numpy</a>
+          
+            <a href="/tags/opencv/" rel="tag"># opencv</a>
           
         </div>
       
@@ -449,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/" rel="next" title="认识matplotlib">
-                <i class="fa fa-chevron-left"></i> 认识matplotlib
+              <a href="/2020/07/17/numpy%E7%9A%84%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" rel="next" title="numpy的广播机制">
+                <i class="fa fa-chevron-left"></i> numpy的广播机制
               </a>
             
           </div>
@@ -458,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="prev" title="不同实现方式的对比">
-                不同实现方式的对比 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -604,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用上的区别"><span class="nav-number">1.</span> <span class="nav-text">使用上的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题根源"><span class="nav-number">2.</span> <span class="nav-text">问题根源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
             
 
           </div>

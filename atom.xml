@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-07-17T13:22:19.745Z</updated>
+  <updated>2020-07-22T16:00:05.790Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>np.copy np.array</title>
+    <link href="https://eliasyin.github.io/2020/07/22/np-copy-np-array/"/>
+    <id>https://eliasyin.github.io/2020/07/22/np-copy-np-array/</id>
+    <published>2020-07-22T15:59:06.000Z</published>
+    <updated>2020-07-22T16:00:05.790Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在对opencv读取的图像(np.array类型)进行截取时，踩到了这个坑.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据预处理" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
+    
+      <category term="numpy" scheme="https://eliasyin.github.io/tags/numpy/"/>
+    
+      <category term="opencv" scheme="https://eliasyin.github.io/tags/opencv/"/>
+    
+  </entry>
   
   <entry>
     <title>numpy的广播机制</title>
@@ -100,9 +125,9 @@
       <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
-    
       <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
+    
+      <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
     
   </entry>
   
