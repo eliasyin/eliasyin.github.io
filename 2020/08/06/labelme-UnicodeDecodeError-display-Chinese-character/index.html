@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="可视化,matplotlib," />
+  <meta name="keywords" content="labelme," />
 
 
 
@@ -81,21 +81,18 @@
 
 
 
-<meta name="description" content="添加标注">
+<meta name="description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
 <meta property="og:type" content="article">
-<meta property="og:title" content="annotate">
-<meta property="og:url" content="https://eliasyin.github.io/2020/03/15/annotate/index.html">
+<meta property="og:title" content="labelme UnicodeDecodeError &amp; display Chinese character">
+<meta property="og:url" content="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="添加标注">
+<meta property="og:description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://eliasyin.github.io/2020/03/15/annotate/fig1.png">
-<meta property="article:published_time" content="2020-03-15T05:07:33.000Z">
-<meta property="article:modified_time" content="2020-06-17T14:44:57.257Z">
+<meta property="article:published_time" content="2020-08-06T07:04:58.000Z">
+<meta property="article:modified_time" content="2020-08-06T07:09:39.867Z">
 <meta property="article:author" content="elias yin">
-<meta property="article:tag" content="可视化">
-<meta property="article:tag" content="matplotlib">
+<meta property="article:tag" content="labelme">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eliasyin.github.io/2020/03/15/annotate/fig1.png">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/03/15/annotate/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/"/>
 
 
 
 
 
-  <title>annotate | 远游的房间</title>
+  <title>labelme UnicodeDecodeError & display Chinese character | 远游的房间</title>
   
 
 
@@ -268,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/03/15/annotate/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -285,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">annotate</h1>
+          <h1 class="post-title" itemprop="name headline">labelme UnicodeDecodeError & display Chinese character</h1>
         
 
         <div class="post-meta">
@@ -297,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T13:07:33+08:00">
-                2020-03-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-06T15:04:58+08:00">
+                2020-08-06
               </time>
             
 
@@ -313,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-06-17T22:44:57+08:00">
-                2020-06-17
+              <time title="Post modified" itemprop="dateModified" datetime="2020-08-06T15:09:39+08:00">
+                2020-08-06
               </time>
             
           </span>
@@ -332,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" itemprop="url" rel="index">
-                    <span itemprop="name">数据可视化</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">数据预处理</span>
                   </a>
                 </span>
 
@@ -374,21 +371,16 @@
       
 
       
-        <p>添加标注</p>
-<a id="more"></a>
+        <p>今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决<br> <a id="more"></a></p>
+<h3 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h3><p>使用labelme的json_to_dataset函数时遇到下面的报错：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 193, in _run_module_as_main</span><br><span class="line">    "__main__", mod_spec)</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 85, in _run_code</span><br><span class="line">    exec(code, run_globals)</span><br><span class="line">  File "E:<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\S</span>cripts<span class="symbol">\l</span>abelme_json_to_dataset.exe<span class="symbol">\_</span>_main__.py", line 7, in &lt;module&gt;</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\s</span>ite-packages<span class="symbol">\l</span>abelme<span class="symbol">\c</span>li<span class="symbol">\j</span>son_to_dataset.py", line 39, in main</span><br><span class="line">    data = json.load(open(json_file))</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\j</span>son<span class="symbol">\_</span>_init__.py", line 296, in load</span><br><span class="line">    return loads(fp.read(),</span><br><span class="line">UnicodeDecodeError: 'gbk' codec can't decode byte 0xbb in position 3157: illegal multibyte sequence</span><br></pre></td></tr></table></figure>
 
-<h3 id="1-箭头"><a href="#1-箭头" class="headerlink" title="1.箭头"></a>1.箭头</h3><h3 id="2-connection-demo"><a href="#2-connection-demo" class="headerlink" title="2.connection demo"></a>2.connection demo</h3><p><a href="https://matplotlib.org/gallery/userdemo/connectionstyle_demo.html#sphx-glr-gallery-userdemo-connectionstyle-demo-py" target="_blank" rel="noopener">Connectionstyle Demo — Matplotlib 3.1.2 documentation</a></p>
-<img src="/2020/03/15/annotate/fig1.png" class="">
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>因为windows下,python都是默认使用gbk解码，所以需要修改。到路径<br><code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli</code><br>下，打开json_to_dataset.py,修改第39行程序，添加编码方式:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = json.load(open(json_file, encoding=<span class="string">'UTF-8'</span>))</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-位置"><a href="#3-位置" class="headerlink" title="3.位置"></a>3.位置</h3><p>标注时有两个位置和两个坐标系要选择。位置的话根据实际情况选择合适的位置，坐标系可以是任意的，不过常用的是几个字符串表示的特殊坐标系。<br>首先是被标注点的位置和坐标系，也就是xy和xycoords参数。</p>
-<ul>
-<li>xycoords常用的参数是’data’，也就是被标注对象所在的坐标系。另外一个常见的参数是’axes fration’，</li>
-<li>textcoords如果不设置的话，默认是和xycoords一致的</li>
-</ul>
-<h3 id="to-read"><a href="#to-read" class="headerlink" title="to read"></a>to read</h3><p><a href="https://stackoverflow.com/questions/41267733/getting-the-coordinates-of-a-matplotlib-annotation-label-in-figure-coordinates" target="_blank" rel="noopener">python - Getting the coordinates of a Matplotlib annotation label in figure coordinates - Stack Overflow</a></p>
-<p><a href="https://jakevdp.github.io/PythonDataScienceHandbook/04.09-text-and-annotation.html" target="_blank" rel="noopener">Text and Annotation | Python Data Science Handbook</a></p>
-<p><a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.annotate.html#matplotlib.axes.Axes.annotate" target="_blank" rel="noopener">matplotlib.axes.Axes.annotate</a></p>
-<p><a href="https://qinqianshan.com/python/matplotlib/matplotlib-patches-path/" target="_blank" rel="noopener">sam’s note</a></p>
+<h3 id="显示中文字符"><a href="#显示中文字符" class="headerlink" title="显示中文字符"></a>显示中文字符</h3><h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>需要指定中文字体的路径。<br>以微软雅黑为例，到windows路径：<br><code>C:\Windows\Fonts\Microsoft YaHei UI</code>下选择简体字体，右键打开字体属性，由此可知字体的名字是<code>msyh.ttc</code>，修改<code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli\json_to_dataset.py</code>65-66行的程序，添加中文字体路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lbl_viz = imgviz.label2rgb(</span><br><span class="line">    label=lbl, img=imgviz.asgray(img), label_names=label_names, loc=<span class="string">"rb"</span>, font_path=<span class="string">'C:\\Windows\\Fonts\\msyh.ttc'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后再次使用labelme，就可以正常显示中文了</p>
 
       
     </div>
@@ -409,7 +401,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/03/15/annotate/" title="annotate">https://eliasyin.github.io/2020/03/15/annotate/</a>
+    <a href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/" title="labelme UnicodeDecodeError & display Chinese character">https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -424,9 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 可视化</a>
-          
-            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
+            <a href="/tags/labelme/" rel="tag"># labelme</a>
           
         </div>
       
@@ -439,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="next" title="不同实现方式的对比">
-                <i class="fa fa-chevron-left"></i> 不同实现方式的对比
+              <a href="/2020/07/22/np-copy-np-array/" rel="next" title="np.copy np.array">
+                <i class="fa fa-chevron-left"></i> np.copy np.array
               </a>
             
           </div>
@@ -448,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/15/%E7%BB%98%E5%9B%BE%E6%B5%81%E7%A8%8B/" rel="prev" title="绘图流程">
-                绘图流程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-箭头"><span class="nav-number">1.</span> <span class="nav-text">1.箭头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-connection-demo"><span class="nav-number">2.</span> <span class="nav-text">2.connection demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-位置"><span class="nav-number">3.</span> <span class="nav-text">3.位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#to-read"><span class="nav-number">4.</span> <span class="nav-text">to read</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UnicodeDecodeError"><span class="nav-number">1.</span> <span class="nav-text">UnicodeDecodeError</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示中文字符"><span class="nav-number">2.</span> <span class="nav-text">显示中文字符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>

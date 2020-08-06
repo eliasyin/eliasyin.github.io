@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-07-22T16:00:05.790Z</updated>
+  <updated>2020-08-06T07:09:39.867Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>labelme UnicodeDecodeError &amp; display Chinese character</title>
+    <link href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/"/>
+    <id>https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/</id>
+    <published>2020-08-06T07:04:58.000Z</published>
+    <updated>2020-08-06T07:09:39.867Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="数据预处理" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="labelme" scheme="https://eliasyin.github.io/tags/labelme/"/>
+    
+  </entry>
   
   <entry>
     <title>np.copy np.array</title>
