@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="labelme," />
+  <meta name="keywords" content="linux,something interesting," />
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
+<meta name="description" content="很多在windows环境下创建的文件名中间有空格，这样在调用文件的时候很不方便，需要在文件名外边加上引号，其实有很好的解决办法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="labelme UnicodeDecodeError &amp; display Chinese character">
-<meta property="og:url" content="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/index.html">
+<meta property="og:title" content="linux下批量修改文件名">
+<meta property="og:url" content="https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
+<meta property="og:description" content="很多在windows环境下创建的文件名中间有空格，这样在调用文件的时候很不方便，需要在文件名外边加上引号，其实有很好的解决办法">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-06T07:04:58.000Z">
-<meta property="article:modified_time" content="2020-08-06T07:09:39.867Z">
+<meta property="article:published_time" content="2020-08-25T14:44:25.000Z">
+<meta property="article:modified_time" content="2020-08-25T14:48:07.646Z">
 <meta property="article:author" content="elias yin">
-<meta property="article:tag" content="labelme">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="something interesting">
 <meta name="twitter:card" content="summary">
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/08/25/linux下批量修改文件名/"/>
 
 
 
 
 
-  <title>labelme UnicodeDecodeError & display Chinese character | 远游的房间</title>
+  <title>linux下批量修改文件名 | 远游的房间</title>
   
 
 
@@ -265,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -282,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">labelme UnicodeDecodeError & display Chinese character</h1>
+          <h1 class="post-title" itemprop="name headline">linux下批量修改文件名</h1>
         
 
         <div class="post-meta">
@@ -294,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-06T15:04:58+08:00">
-                2020-08-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-25T22:44:25+08:00">
+                2020-08-25
               </time>
             
 
@@ -310,8 +311,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-08-06T15:09:39+08:00">
-                2020-08-06
+              <time title="Post modified" itemprop="dateModified" datetime="2020-08-25T22:48:07+08:00">
+                2020-08-25
               </time>
             
           </span>
@@ -329,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">数据预处理</span>
+                  <a href="/categories/%E6%95%88%E7%8E%87%E5%BE%88%E5%A4%9A/" itemprop="url" rel="index">
+                    <span itemprop="name">效率很多</span>
                   </a>
                 </span>
 
@@ -371,16 +372,14 @@
       
 
       
-        <p>今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决<br> <a id="more"></a></p>
-<h3 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h3><p>使用labelme的json_to_dataset函数时遇到下面的报错：</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 193, in _run_module_as_main</span><br><span class="line">    "__main__", mod_spec)</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 85, in _run_code</span><br><span class="line">    exec(code, run_globals)</span><br><span class="line">  File "E:<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\S</span>cripts<span class="symbol">\l</span>abelme_json_to_dataset.exe<span class="symbol">\_</span>_main__.py", line 7, in &lt;module&gt;</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\s</span>ite-packages<span class="symbol">\l</span>abelme<span class="symbol">\c</span>li<span class="symbol">\j</span>son_to_dataset.py", line 39, in main</span><br><span class="line">    data = json.load(open(json_file))</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\j</span>son<span class="symbol">\_</span>_init__.py", line 296, in load</span><br><span class="line">    return loads(fp.read(),</span><br><span class="line">UnicodeDecodeError: 'gbk' codec can't decode byte 0xbb in position 3157: illegal multibyte sequence</span><br></pre></td></tr></table></figure>
+        <p>很多在windows环境下创建的文件名中间有空格，这样在调用文件的时候很不方便，需要在文件名外边加上引号，其实有很好的解决办法</p>
+<a id="more"></a>
 
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>因为windows下,python都是默认使用gbk解码，所以需要修改。到路径<br><code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli</code><br>下，打开json_to_dataset.py,修改第39行程序，添加编码方式:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = json.load(open(json_file, encoding=<span class="string">'UTF-8'</span>))</span><br></pre></td></tr></table></figure>
 
-<h3 id="显示中文字符"><a href="#显示中文字符" class="headerlink" title="显示中文字符"></a>显示中文字符</h3><h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>需要指定中文字体的路径。<br>以微软雅黑为例，到windows路径：<br><code>C:\Windows\Fonts\Microsoft YaHei UI</code>下选择简体字体，右键打开字体属性，由此可知字体的名字是<code>msyh.ttc</code>，修改<code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli\json_to_dataset.py</code>65-66行的程序，添加中文字体路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lbl_viz = imgviz.label2rgb(</span><br><span class="line">    label=lbl, img=imgviz.asgray(img), label_names=label_names, loc=<span class="string">"rb"</span>, font_path=<span class="string">'C:\\Windows\\Fonts\\msyh.ttc'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>然后再次使用labelme，就可以正常显示中文了</p>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 批量修改文件的名称，将文件名中间任意数量的空格替换为一个下划线</span></span><br><span class="line">find . -name <span class="string">"* *"</span> |</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> name</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        na=$(<span class="built_in">echo</span> <span class="variable">$name</span> | tr -s <span class="string">' '</span> <span class="string">'_'</span>)</span><br><span class="line">        mv <span class="string">"<span class="variable">$name</span>"</span> <span class="variable">$na</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>参考：<br><a href="https://blog.csdn.net/praylucky/article/details/8642893" target="_blank" rel="noopener">linux 批量 含空格文件名 重命名_praylucky的专栏-CSDN博客_linux 重命名带有短线的文件名</a></p>
 
       
     </div>
@@ -401,7 +400,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/" title="labelme UnicodeDecodeError & display Chinese character">https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/</a>
+    <a href="https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/" title="linux下批量修改文件名">https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -416,7 +415,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/labelme/" rel="tag"># labelme</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/something-interesting/" rel="tag"># something interesting</a>
           
         </div>
       
@@ -429,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/22/np-copy-np-array/" rel="next" title="np.copy np.array">
-                <i class="fa fa-chevron-left"></i> np.copy np.array
+              <a href="/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/" rel="next" title="labelme UnicodeDecodeError & display Chinese character">
+                <i class="fa fa-chevron-left"></i> labelme UnicodeDecodeError & display Chinese character
               </a>
             
           </div>
@@ -439,8 +440,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/" rel="prev" title="linux下批量修改文件名">
-                linux下批量修改文件名 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/25/%E6%B8%85%E5%8D%8E%E4%BA%91%E7%9B%98%E5%88%86%E4%BA%AB%E9%93%BE%E6%8E%A5%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="清华云盘分享链接的使用">
+                清华云盘分享链接的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -493,17 +494,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -574,22 +566,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UnicodeDecodeError"><span class="nav-number">1.</span> <span class="nav-text">UnicodeDecodeError</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示中文字符"><span class="nav-number">2.</span> <span class="nav-text">显示中文字符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

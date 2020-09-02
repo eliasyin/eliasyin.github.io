@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="labelme," />
+  <meta name="keywords" content="basic," />
 
 
 
@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
+<meta name="description" content="对transformer的思考与理解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="labelme UnicodeDecodeError &amp; display Chinese character">
-<meta property="og:url" content="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/index.html">
+<meta property="og:title" content="Attention与Transformer">
+<meta property="og:url" content="https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/index.html">
 <meta property="og:site_name" content="远游的房间">
-<meta property="og:description" content="今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决">
+<meta property="og:description" content="对transformer的思考与理解">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-06T07:04:58.000Z">
-<meta property="article:modified_time" content="2020-08-06T07:09:39.867Z">
+<meta property="og:image" content="https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/img1.png">
+<meta property="article:published_time" content="2020-08-25T14:56:19.000Z">
+<meta property="article:modified_time" content="2020-08-25T15:02:50.805Z">
 <meta property="article:author" content="elias yin">
-<meta property="article:tag" content="labelme">
+<meta property="article:tag" content="basic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/img1.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/"/>
+  <link rel="canonical" href="https://eliasyin.github.io/2020/08/25/Attention与Transformer/"/>
 
 
 
 
 
-  <title>labelme UnicodeDecodeError & display Chinese character | 远游的房间</title>
+  <title>Attention与Transformer | 远游的房间</title>
   
 
 
@@ -265,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="elias yin">
@@ -282,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">labelme UnicodeDecodeError & display Chinese character</h1>
+          <h1 class="post-title" itemprop="name headline">Attention与Transformer</h1>
         
 
         <div class="post-meta">
@@ -294,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-06T15:04:58+08:00">
-                2020-08-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-25T22:56:19+08:00">
+                2020-08-25
               </time>
             
 
@@ -310,8 +312,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-08-06T15:09:39+08:00">
-                2020-08-06
+              <time title="Post modified" itemprop="dateModified" datetime="2020-08-25T23:02:50+08:00">
+                2020-08-25
               </time>
             
           </span>
@@ -329,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">数据预处理</span>
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -371,16 +373,42 @@
       
 
       
-        <p>今天在windows上使用Labelme时发现，生成的图像，标签里边的中文字符全都无法正常显示，所以研究了一下怎么解决<br> <a id="more"></a></p>
-<h3 id="UnicodeDecodeError"><a href="#UnicodeDecodeError" class="headerlink" title="UnicodeDecodeError"></a>UnicodeDecodeError</h3><p>使用labelme的json_to_dataset函数时遇到下面的报错：</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 193, in _run_module_as_main</span><br><span class="line">    "__main__", mod_spec)</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\r</span>unpy.py", line 85, in _run_code</span><br><span class="line">    exec(code, run_globals)</span><br><span class="line">  File "E:<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\S</span>cripts<span class="symbol">\l</span>abelme_json_to_dataset.exe<span class="symbol">\_</span>_main__.py", line 7, in &lt;module&gt;</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\s</span>ite-packages<span class="symbol">\l</span>abelme<span class="symbol">\c</span>li<span class="symbol">\j</span>son_to_dataset.py", line 39, in main</span><br><span class="line">    data = json.load(open(json_file))</span><br><span class="line">  File "e:<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\m</span>edicine<span class="symbol">\l</span>ib<span class="symbol">\j</span>son<span class="symbol">\_</span>_init__.py", line 296, in load</span><br><span class="line">    return loads(fp.read(),</span><br><span class="line">UnicodeDecodeError: 'gbk' codec can't decode byte 0xbb in position 3157: illegal multibyte sequence</span><br></pre></td></tr></table></figure>
+        <p>对transformer的思考与理解</p>
+<a id="more"></a>
 
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>因为windows下,python都是默认使用gbk解码，所以需要修改。到路径<br><code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli</code><br>下，打开json_to_dataset.py,修改第39行程序，添加编码方式:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = json.load(open(json_file, encoding=<span class="string">'UTF-8'</span>))</span><br></pre></td></tr></table></figure>
 
-<h3 id="显示中文字符"><a href="#显示中文字符" class="headerlink" title="显示中文字符"></a>显示中文字符</h3><h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><p>需要指定中文字体的路径。<br>以微软雅黑为例，到windows路径：<br><code>C:\Windows\Fonts\Microsoft YaHei UI</code>下选择简体字体，右键打开字体属性，由此可知字体的名字是<code>msyh.ttc</code>，修改<code>E:\Anaconda3\envs\medicine\Lib\site-packages\labelme\cli\json_to_dataset.py</code>65-66行的程序，添加中文字体路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lbl_viz = imgviz.label2rgb(</span><br><span class="line">    label=lbl, img=imgviz.asgray(img), label_names=label_names, loc=<span class="string">"rb"</span>, font_path=<span class="string">'C:\\Windows\\Fonts\\msyh.ttc'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>然后再次使用labelme，就可以正常显示中文了</p>
+
+<h2 id="transformer的组成"><a href="#transformer的组成" class="headerlink" title="transformer的组成"></a>transformer的组成</h2><img src="/2020/08/25/Attention%E4%B8%8ETransformer/img1.png" class="">
+
+<p>本文先介绍最基本的Scaled Dot-Product Attention，然后是multi-head attention，最后介绍transformer</p>
+<h4 id="attention-is-all-you-need"><a href="#attention-is-all-you-need" class="headerlink" title="attention is all you need"></a><a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener">attention is all you need</a></h4><h4 id="文章解读"><a href="#文章解读" class="headerlink" title="文章解读"></a><a href="https://zhuanlan.zhihu.com/p/47282410" target="_blank" rel="noopener">文章解读</a></h4><h2 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h2><h4 id="code"><a href="#code" class="headerlink" title="code"></a><a href="https://github.com/brandontrabucco/scaled_dot_product_attention/blob/master/scaled_dot_product_attention.py" target="_blank" rel="noopener">code</a></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S = tf.matmul(tf.nn.softmax(tf.matmul(Q, tf.transpose(K, [<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>])) / tf.sqrt(float(self.hidden_size))), V)</span><br></pre></td></tr></table></figure>
+
+<p>self-attention的运算：<br>$softmax(\frac{QK^T}{\sqrt{d_k}})*V$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.matmul(Q, tf.transpose(K, [<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>]))  / tf.sqrt(float(self.hidden_size)</span><br></pre></td></tr></table></figure>
+
+<p>实现的计算：<br>$\frac{QK^T}{\sqrt{d_k}}$</p>
+<p>Q和K的维度 $d_k$, V的维度$d_v$</p>
+<h4 id="为何要除以-sqrt-d-k"><a href="#为何要除以-sqrt-d-k" class="headerlink" title="为何要除以 $\sqrt{d_k}$"></a>为何要除以 $\sqrt{d_k}$</h4><p>当Q, K 的维度很高时， 点积的结果可能会非常大，这样会导致softmax后的结果集中于几个极值处。</p>
+<p>为了抑制这个问题，对点积的结果作放缩处理，也就是除以$\sqrt{d_k}$</p>
+<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>直观理解的话，Multi-head attention其实就是将输入数据按照特征维度截开(截为head_num段)，然后每段执行一个Scaled Dot-Product Attention</p>
+<h4 id="code-1"><a href="#code-1" class="headerlink" title="code"></a><a href="https://github.com/CyberZHG/torch-multi-head-attention/blob/master/torch_multi_head_attention/multi_head_attention.py" target="_blank" rel="noopener">code</a></h4><p>代码中 mask.repeat函数理解：<br>代码中有这样的两行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    mask = mask.repeat(self.head_num, <span class="number">1</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里的repeat函数是torch里边一个维度扩张函数，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">x  = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">print(x.shape)</span><br><span class="line"><span class="comment"># 在dim=1上重复两次，并构建4个这样的重复</span></span><br><span class="line">z = x.repeat(<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">print(z, z.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>torch.Size([3])
+tensor([[[1, 2, 3, 1, 2, 3]],
+
+        [[1, 2, 3, 1, 2, 3]],
+
+        [[1, 2, 3, 1, 2, 3]],
+
+        [[1, 2, 3, 1, 2, 3]]]) torch.Size([4, 1, 6])</code></pre><h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><h4 id="encoder-decoder"><a href="#encoder-decoder" class="headerlink" title="encoder-decoder"></a>encoder-decoder</h4><p>Transformer 结构图左侧就是encoder，右侧灰色框则是decoder</p>
+<h6 id="encoder"><a href="#encoder" class="headerlink" title="encoder"></a>encoder</h6><p>很明显，encoder结构中只有一个multi-head attention, 由于这个attention的Q,K,V都一样，所以其实是self attention</p>
+<h6 id="decoer"><a href="#decoer" class="headerlink" title="decoer"></a>decoer</h6><p>decoder中有两个multi-head attention，从输入的来源来看，第一个attention就是self attention，第二个attention的输入不仅有上一个attention的输出<br>还有encoder的输出，所以这部分是一种encoder-decoder attention, 也被称作 context attention</p>
+<p>decoder的最后是一个被作者命名为 position-wise feed-forward networks的东西，这个其实就是卷积网络，只不过卷积核尺寸为1，当然窗口为1的卷积其实就是全连接</p>
+<h4 id="为什么说transformer是encoder-decoder的结构"><a href="#为什么说transformer是encoder-decoder的结构" class="headerlink" title="为什么说transformer是encoder-decoder的结构"></a>为什么说transformer是encoder-decoder的结构</h4><p>首先要明确的一点是：encdoer-decoder不是一个具体的模型，而是一个通用的框架<br>所谓的encoder就是将输入序列转化为一个固定长度的向量<br>所谓的decoder是将这个固定长度的向量解码为输出序列</p>
 
       
     </div>
@@ -401,7 +429,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/" title="labelme UnicodeDecodeError & display Chinese character">https://eliasyin.github.io/2020/08/06/labelme-UnicodeDecodeError-display-Chinese-character/</a>
+    <a href="https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/" title="Attention与Transformer">https://eliasyin.github.io/2020/08/25/Attention%E4%B8%8ETransformer/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -416,7 +444,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/labelme/" rel="tag"># labelme</a>
+            <a href="/tags/basic/" rel="tag"># basic</a>
           
         </div>
       
@@ -429,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/22/np-copy-np-array/" rel="next" title="np.copy np.array">
-                <i class="fa fa-chevron-left"></i> np.copy np.array
+              <a href="/2020/08/25/%E6%B8%85%E5%8D%8E%E4%BA%91%E7%9B%98%E5%88%86%E4%BA%AB%E9%93%BE%E6%8E%A5%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="清华云盘分享链接的使用">
+                <i class="fa fa-chevron-left"></i> 清华云盘分享链接的使用
               </a>
             
           </div>
@@ -439,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/" rel="prev" title="linux下批量修改文件名">
-                linux下批量修改文件名 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/25/matplotlib%E7%BB%98%E5%88%B6%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%87%BD%E6%95%B0%E5%8C%BA%E5%9F%9F/" rel="prev" title="matplotlib绘制线性规划函数区域">
+                matplotlib绘制线性规划函数区域 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UnicodeDecodeError"><span class="nav-number">1.</span> <span class="nav-text">UnicodeDecodeError</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示中文字符"><span class="nav-number">2.</span> <span class="nav-text">显示中文字符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer的组成"><span class="nav-number">1.</span> <span class="nav-text">transformer的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#attention-is-all-you-need"><span class="nav-number">1.0.1.</span> <span class="nav-text">attention is all you need</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章解读"><span class="nav-number">1.0.2.</span> <span class="nav-text">文章解读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">2.0.1.</span> <span class="nav-text">code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为何要除以-sqrt-d-k"><span class="nav-number">2.0.2.</span> <span class="nav-text">为何要除以 $\sqrt{d_k}$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.</span> <span class="nav-text">Multi-Head Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#code-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer"><span class="nav-number">4.</span> <span class="nav-text">Transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#encoder-decoder"><span class="nav-number">4.0.1.</span> <span class="nav-text">encoder-decoder</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#encoder"><span class="nav-number">4.0.1.0.1.</span> <span class="nav-text">encoder</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#decoer"><span class="nav-number">4.0.1.0.2.</span> <span class="nav-text">decoer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么说transformer是encoder-decoder的结构"><span class="nav-number">4.0.2.</span> <span class="nav-text">为什么说transformer是encoder-decoder的结构</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
