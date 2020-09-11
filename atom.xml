@@ -98,9 +98,9 @@
       <category term="效率很多" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87%E5%BE%88%E5%A4%9A/"/>
     
     
-      <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
-    
       <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
+    
+      <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
     
   </entry>
   
@@ -211,9 +211,9 @@
       <category term="效率" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87/"/>
     
     
-      <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
-    
       <category term="latex" scheme="https://eliasyin.github.io/tags/latex/"/>
+    
+      <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
     
   </entry>
   
@@ -234,9 +234,9 @@
       <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
-    
       <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
+    
+      <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
     
   </entry>
   
