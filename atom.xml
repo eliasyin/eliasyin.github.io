@@ -234,9 +234,9 @@
       <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
-    
       <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
+    
+      <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
     
   </entry>
   
