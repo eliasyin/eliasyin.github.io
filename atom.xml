@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://eliasyin.github.io/"/>
-  <updated>2020-08-25T15:16:40.097Z</updated>
+  <updated>2020-10-24T12:59:49.535Z</updated>
   <id>https://eliasyin.github.io/</id>
   
   <author>
@@ -15,6 +15,132 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>average_face</title>
+    <link href="https://eliasyin.github.io/2020/10/24/average-face/"/>
+    <id>https://eliasyin.github.io/2020/10/24/average-face/</id>
+    <published>2020-10-24T12:51:06.000Z</published>
+    <updated>2020-10-24T12:59:49.535Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;为了分析中医里边不同体质的人脸究竟有没有区别，计算阴虚阳虚两种体质的平均脸&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="中医现代化" scheme="https://eliasyin.github.io/categories/%E4%B8%AD%E5%8C%BB%E7%8E%B0%E4%BB%A3%E5%8C%96/"/>
+    
+    
+      <category term="opencv" scheme="https://eliasyin.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gpu_is_lost</title>
+    <link href="https://eliasyin.github.io/2020/10/24/gpu-is-lost/"/>
+    <id>https://eliasyin.github.io/2020/10/24/gpu-is-lost/</id>
+    <published>2020-10-24T12:49:02.000Z</published>
+    <updated>2020-10-24T13:04:46.643Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt; 服务器上的gpu隔一段时间就会挂掉，所以这次它又挂掉之后我决定好好分析一波原因&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>stanfordcorenlp</title>
+    <link href="https://eliasyin.github.io/2020/10/24/stanfordcorenlp/"/>
+    <id>https://eliasyin.github.io/2020/10/24/stanfordcorenlp/</id>
+    <published>2020-10-24T12:41:24.000Z</published>
+    <updated>2020-10-24T12:46:12.617Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;详细定位错误位置&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="nlp" scheme="https://eliasyin.github.io/tags/nlp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>excepted_ptr_umat_for_argument_img</title>
+    <link href="https://eliasyin.github.io/2020/10/24/excepted-ptr-umat-for-argument-img/"/>
+    <id>https://eliasyin.github.io/2020/10/24/excepted-ptr-umat-for-argument-img/</id>
+    <published>2020-10-24T12:39:08.000Z</published>
+    <updated>2020-10-24T12:40:59.915Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;错误原因在于数据的结构发生了变化&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="opencv" scheme="https://eliasyin.github.io/tags/opencv/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ngrok_server</title>
+    <link href="https://eliasyin.github.io/2020/10/24/ngrok-server/"/>
+    <id>https://eliasyin.github.io/2020/10/24/ngrok-server/</id>
+    <published>2020-10-24T12:31:41.000Z</published>
+    <updated>2020-10-24T12:36:41.917Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;起因：在公司时不能正常访问基地内的服务器，所以采用了下边的内网穿透方法&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="效率" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87/"/>
+    
+    
+      <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
+    
+      <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>raspi_nat_ddns</title>
+    <link href="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/"/>
+    <id>https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/</id>
+    <published>2020-10-24T12:26:19.000Z</published>
+    <updated>2020-10-24T12:59:24.041Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;起因：在公司时不能正常访问基地内的服务器，非常烦人，所以用了下边的办法解决&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="效率" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87/"/>
+    
+    
+      <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
+    
+      <category term="something interesting" scheme="https://eliasyin.github.io/tags/something-interesting/"/>
+    
+  </entry>
   
   <entry>
     <title>matplotlib绘制线性规划函数区域</title>
@@ -86,7 +212,7 @@
     <link href="https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/"/>
     <id>https://eliasyin.github.io/2020/08/25/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/</id>
     <published>2020-08-25T14:44:25.000Z</published>
-    <updated>2020-08-25T14:48:07.646Z</updated>
+    <updated>2020-10-24T12:55:30.421Z</updated>
     
     <summary type="html">
     
@@ -95,7 +221,7 @@
     </summary>
     
     
-      <category term="效率很多" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87%E5%BE%88%E5%A4%9A/"/>
+      <category term="效率" scheme="https://eliasyin.github.io/categories/%E6%95%88%E7%8E%87/"/>
     
     
       <category term="linux" scheme="https://eliasyin.github.io/tags/linux/"/>
@@ -142,11 +268,11 @@
       <category term="数据预处理" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/"/>
     
     
+      <category term="opencv" scheme="https://eliasyin.github.io/tags/opencv/"/>
+    
       <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
     
       <category term="numpy" scheme="https://eliasyin.github.io/tags/numpy/"/>
-    
-      <category term="opencv" scheme="https://eliasyin.github.io/tags/opencv/"/>
     
   </entry>
   
@@ -234,9 +360,9 @@
       <category term="机器学习" scheme="https://eliasyin.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
-    
       <category term="pytorch" scheme="https://eliasyin.github.io/tags/pytorch/"/>
+    
+      <category term="keras" scheme="https://eliasyin.github.io/tags/keras/"/>
     
   </entry>
   
@@ -329,100 +455,6 @@
       <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
       <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不同实现方式的对比</title>
-    <link href="https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
-    <id>https://eliasyin.github.io/2020/03/15/%E4%B8%8D%E5%90%8C%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
-    <published>2020-03-15T04:54:59.000Z</published>
-    <updated>2020-06-17T14:46:12.182Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;不同实现方式的对比&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-    
-      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>fig.show() 与 plt.show()</title>
-    <link href="https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/"/>
-    <id>https://eliasyin.github.io/2020/03/15/fig-show-%E4%B8%8E-plt-show/</id>
-    <published>2020-03-15T04:46:41.000Z</published>
-    <updated>2020-06-17T14:47:47.906Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;两者区别主要在应用场景&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-    
-      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>认识matplotlib</title>
-    <link href="https://eliasyin.github.io/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/"/>
-    <id>https://eliasyin.github.io/2020/03/15/%E8%AE%A4%E8%AF%86matplotlib/</id>
-    <published>2020-03-15T04:24:34.000Z</published>
-    <updated>2020-03-15T04:44:58.994Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot; title=&quot;1.概述&quot;&gt;&lt;/a&gt;1.概述&lt;/h3&gt;&lt;p&gt;  matplotlib中的一切都是按照层次结构组织的。最顶级的一层是由matplotlib.pyplot模块提供的状态机环境(state-machine environment)。在这一层，可以调用简单的函数想当前图形(figure)中增加plot元素(plot element)，比如线条、图片(images)、文本等。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据可视化" scheme="https://eliasyin.github.io/categories/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-    
-      <category term="可视化" scheme="https://eliasyin.github.io/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="matplotlib" scheme="https://eliasyin.github.io/tags/matplotlib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你好！</title>
-    <link href="https://eliasyin.github.io/2020/01/05/%E4%BD%A0%E5%A5%BD%EF%BC%81/"/>
-    <id>https://eliasyin.github.io/2020/01/05/%E4%BD%A0%E5%A5%BD%EF%BC%81/</id>
-    <published>2020-01-05T13:14:01.000Z</published>
-    <updated>2020-03-15T04:38:34.464Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;第一篇文章&quot;&gt;&lt;a href=&quot;#第一篇文章&quot; class=&quot;headerlink&quot; title=&quot;第一篇文章&quot;&gt;&lt;/a&gt;第一篇文章&lt;/h1&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-    
-    
-      <category term="测试" scheme="https://eliasyin.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   

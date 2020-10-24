@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="nlp," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="远游的房间" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="详细定位错误位置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stanfordcorenlp">
+<meta property="og:url" content="https://eliasyin.github.io/2020/10/24/stanfordcorenlp/index.html">
+<meta property="og:site_name" content="远游的房间">
+<meta property="og:description" content="详细定位错误位置">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-24T12:41:24.000Z">
+<meta property="article:modified_time" content="2020-10-24T12:46:12.617Z">
+<meta property="article:author" content="elias yin">
+<meta property="article:tag" content="nlp">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://eliasyin.github.io/2020/10/24/stanfordcorenlp/"/>
+
+
+
+
+
+  <title>stanfordcorenlp | 远游的房间</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远游的房间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/10/24/stanfordcorenlp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="elias yin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远游的房间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">stanfordcorenlp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-24T20:41:24+08:00">
+                2020-10-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-10-24T20:46:12+08:00">
+                2020-10-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		
+		  <span class="post-meta-divider">|</span>
+		  <span id="busuanzi_value_page_pv"></span>次阅读
+		
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>详细定位错误位置</p>
+<a id="more"></a>
+
+<h2 id="stanfordcorenlp"><a href="#stanfordcorenlp" class="headerlink" title="stanfordcorenlp"></a>stanfordcorenlp</h2><p>关于错误<code>FileNotFoundError: [Errno 2] No such file or directory: &#39;java&#39;: &#39;java&#39;</code>的处理</p>
+<p>首先安装java</p>
+<p>非root用户安装java：到官网下载jdk文件，然后解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u171-linux-x64.tar.gz</span><br><span class="line"><span class="comment">#  显示里边的文件，并将直接打包的.tar文件解压,并放置在用户当前目录下</span></span><br></pre></td></tr></table></figure>
+
+<p>添加java路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#===jdk====</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/home/ycf19/tools/jdk1.8.0_261</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<p>安装了java之后还是报错，其实是因为非root安装，java不在默认路径，因此需要我们指定路径 </p>
+<p>但是我们还是需要分析一下错误来看看究竟是不是路径的问题。<br>错误内容：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent <span class="keyword">call</span> <span class="keyword">last</span>):</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"train.py"</span>, line <span class="number">13</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    <span class="keyword">from</span> data_utils <span class="keyword">import</span> *</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/mnt/home-ssd/ycf19/student/IJCAI/DGEDT-senti-master/DGEDT/data_utils.py"</span>, line <span class="number">6</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    <span class="keyword">from</span> dependency_graphbiedges <span class="keyword">import</span> tokenize,<span class="keyword">concat</span></span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/mnt/home-ssd/ycf19/student/IJCAI/DGEDT-senti-master/DGEDT/dependency_graphbiedges.py"</span>, line <span class="number">11</span>, <span class="keyword">in</span> &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">    nlps = StanfordCoreNLP(r<span class="string">'./stanford-corenlp-full-2018-02-27'</span>)</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/ycf19/anaconda3/lib/python3.7/site-packages/stanfordcorenlp/corenlp.py"</span>, line <span class="number">46</span>, <span class="keyword">in</span> __init__</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> subprocess.call([<span class="string">'java'</span>, <span class="string">'-version'</span>], stdout=subprocess.PIPE, stderr=subprocess.STDOUT) == <span class="number">0</span>:</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/ycf19/anaconda3/lib/python3.7/subprocess.py"</span>, line <span class="number">304</span>, <span class="keyword">in</span> <span class="keyword">call</span></span><br><span class="line">    <span class="keyword">with</span> Popen(*popenargs, **kwargs) <span class="keyword">as</span> p:</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/ycf19/anaconda3/lib/python3.7/subprocess.py"</span>, line <span class="number">756</span>, <span class="keyword">in</span> __init__</span><br><span class="line">    restore_signals, start_new_session)</span><br><span class="line">  <span class="keyword">File</span> <span class="string">"/home/ycf19/anaconda3/lib/python3.7/subprocess.py"</span>, line <span class="number">1499</span>, <span class="keyword">in</span> _execute_child</span><br><span class="line">    <span class="keyword">raise</span> child_exception_type(errno_num, err_msg, err_filename)</span><br><span class="line">FileNotFoundError: [Errno <span class="number">2</span>] <span class="keyword">No</span> such <span class="keyword">file</span> <span class="keyword">or</span> <span class="keyword">directory</span>: <span class="string">'java'</span>: <span class="string">'java'</span></span><br></pre></td></tr></table></figure>
+
+<p>通过python在线文档<a href="https://docs.python.org/3.7/" target="_blank" rel="noopener">3.7.9 Documentation</a>查阅它的源代码，首先在<code>subprocess.py</code>寻找下面错误的触发条件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">raise</span> child_exception_type(errno_num, err_msg, err_filename)</span><br></pre></td></tr></table></figure>
+
+<p>然后找到这部分的代码如下，因此可以知道<code>issubclass(child_exception_type, OSError) and hex_errno</code>为真，导致错误被触发</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> issubclass(child_exception_type, OSError) <span class="keyword">and</span> hex_errno:</span><br><span class="line">	errno_num = int(hex_errno, <span class="number">16</span>)</span><br><span class="line">	child_exec_never_called = (err_msg == <span class="string">"noexec"</span>)</span><br><span class="line">	<span class="keyword">if</span> child_exec_never_called:</span><br><span class="line">		err_msg = <span class="string">""</span></span><br><span class="line">		<span class="comment"># The error must be from chdir(cwd).</span></span><br><span class="line">		err_filename = cwd</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		err_filename = orig_executable</span><br><span class="line">	<span class="keyword">if</span> errno_num != <span class="number">0</span>:</span><br><span class="line">		err_msg = os.strerror(errno_num)</span><br><span class="line">		<span class="keyword">if</span> errno_num == errno.ENOENT:</span><br><span class="line">			err_msg += <span class="string">': '</span> + repr(err_filename)</span><br><span class="line">	<span class="keyword">raise</span> child_exception_type(errno_num, err_msg, err_filename)</span><br><span class="line"><span class="keyword">raise</span> child_exception_type(err_msg)</span><br></pre></td></tr></table></figure>
+
+<p>从这层判断语句起，寻找其上一级语句，依次可得<br><code>issubclass(child_exception_type, OSError) and hex_errno</code>为真&lt;–<code>errpipe_data</code>为真，到这里再往上追溯有点困难，但是我们可以找到最后改变<br><code>errpipe_data</code>的代码块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">errpipe_data = bytearray()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">	part = os.read(errpipe_read, <span class="number">50000</span>)</span><br><span class="line">	errpipe_data += part</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> part <span class="keyword">or</span> len(errpipe_data) &gt; <span class="number">50000</span>:</span><br><span class="line">		<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p><code>os.read</code>是从指定对象里读取指定数量的字节，从这个代码块我们可以分析出正式因为<code>errpipe_read</code>满足了某个条件，才使得<code>errpipe_data</code>为真。那么我们应该往上寻找最近的修改<code>errpipe_read</code>值的代码块，可以找到下边的一个函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">self.pid = _posixsubprocess.fork_exec(</span><br><span class="line">		args, executable_list,</span><br><span class="line">		close_fds, tuple(sorted(map(int, fds_to_keep))),</span><br><span class="line">		cwd, env_list,</span><br><span class="line">		p2cread, p2cwrite, c2pread, c2pwrite,</span><br><span class="line">		errread, errwrite,</span><br><span class="line">		errpipe_read, errpipe_write,</span><br><span class="line">		restore_signals, start_new_session, preexec_fn)</span><br></pre></td></tr></table></figure>
+
+<p>可以确定的是，问题出在这个函数里边。上边已经分析过，我们已经安装了java，它还报错说明是路径的问题，这个函数的参数中，<code>executable_list</code><br><code>env_list</code>看起来是和路径关系最大的两个变量，那么我们这里插入输出函数，观察这两个变量的值是不是存在问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">executable = os.fsencode(executable)</span><br><span class="line">print(<span class="string">'executable: '</span>, executable)    <span class="comment"># 查看executable</span></span><br><span class="line"><span class="keyword">if</span> os.path.dirname(executable):</span><br><span class="line">	executable_list = (executable,)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="comment"># This matches the behavior of os._execvpe().</span></span><br><span class="line">	print(<span class="string">'env: '</span>, env)    <span class="comment"># 查看env</span></span><br><span class="line">	print(<span class="string">'get_exec_path of env: '</span>, os.get_exec_path(env))    <span class="comment"># 从env获取系统可执行路径</span></span><br><span class="line">	executable_list = tuple(</span><br><span class="line">		os.path.join(os.fsencode(dir), executable)</span><br><span class="line">		<span class="keyword">for</span> dir <span class="keyword">in</span> os.get_exec_path(env))</span><br><span class="line">	print(<span class="string">'executable_list: '</span>, executable_list)    <span class="comment"># 查看executable_list</span></span><br></pre></td></tr></table></figure>
+
+<p>再次运行出错的程序，得到的输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">executable:  b<span class="string">'java'</span></span><br><span class="line">env:  None</span><br><span class="line">get_exec_path of env:  [<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/bin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/bin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/usr/local/sbin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/usr/sbin'</span>, <span class="string">'/usr/bin'</span>, <span class="string">'/sbin'</span>, <span class="string">'/bin'</span>, <span class="string">'/usr/games'</span>, <span class="string">'/usr/local/games'</span>, <span class="string">'/home/ycf19/tools/opensmile/lib'</span>, <span class="string">'/home/ycf19/tools/opensmile/lib'</span>]</span><br><span class="line">executable_list:  (b<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/bin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/bin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/usr/local/sbin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/usr/sbin/java'</span>, b<span class="string">'/usr/bin/java'</span>, b<span class="string">'/sbin/java'</span>, b<span class="string">'/bin/java'</span>, b<span class="string">'/usr/games/java'</span>, b<span class="string">'/usr/local/games/java'</span>, b<span class="string">'/home/ycf19/tools/opensmile/lib/java'</span>, b<span class="string">'/home/ycf19/tools/opensmile/lib/java'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>可以发现这里并没有刚刚添加的java路径，重新读取<code>.zshrc</code>，使刚才的配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>然后在执行出错的程序，这次就有java路径输出了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">executable:  b<span class="string">'java'</span></span><br><span class="line">env:  None</span><br><span class="line">get_exec_path of env:  [<span class="string">'/home/ycf19/tools/jdk1.8.0_261/bin'</span>, <span class="string">'/home/ycf19/tools/jdk1.8.0_261/jre/bin'</span>, <span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/bin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/bin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin'</span>, <span class="string">'/home/ycf19/anaconda3/bin'</span>, <span class="string">'/home/ycf19/bin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/usr/local/sbin'</span>, <span class="string">'/usr/local/bin'</span>, <span class="string">'/usr/sbin'</span>, <span class="string">'/usr/bin'</span>, <span class="string">'/sbin'</span>, <span class="string">'/bin'</span>, <span class="string">'/usr/games'</span>, <span class="string">'/usr/local/games'</span>, <span class="string">'/home/ycf19/tools/opensmile/lib'</span>, <span class="string">'/home/ycf19/tools/opensmile/lib'</span>, <span class="string">'/home/ycf19/tools/opensmile/lib'</span>]</span><br><span class="line">executable_list:  (b<span class="string">'/home/ycf19/tools/jdk1.8.0_261/bin/java'</span>, b<span class="string">'/home/ycf19/tools/jdk1.8.0_261/jre/bin/java'</span>, b<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/bin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/bin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/tools/gh_1.1.0_linux_amd64/bin/java'</span>, b<span class="string">'/home/ycf19/anaconda3/bin/java'</span>, b<span class="string">'/home/ycf19/bin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/usr/local/sbin/java'</span>, b<span class="string">'/usr/local/bin/java'</span>, b<span class="string">'/usr/sbin/java'</span>, b<span class="string">'/usr/bin/java'</span>, b<span class="string">'/sbin/java'</span>, b<span class="string">'/bin/java'</span>, b<span class="string">'/usr/games/java'</span>, b<span class="string">'/usr/local/games/java'</span>, b<span class="string">'/home/ycf19/tools/opensmile/lib/java'</span>, b<span class="string">'/home/ycf19/tools/opensmile/lib/java'</span>, b<span class="string">'/home/ycf19/tools/opensmile/lib/java'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>tips:<br>  <code>try....finally...</code>中<code>finally</code>代码块一定执行</p>
+<p>reference:</p>
+<p><a href="https://webcache.googleusercontent.com/search?q=cache:nyFLj_TPswgJ:https://www.twblogs.net/a/5d66dca4bd9eee541c336227+&amp;cd=1&amp;hl=zh-CN&amp;ct=clnk&amp;gl=hk" target="_blank" rel="noopener">https://webcache.googleusercontent.com/search?q=cache:nyFLj_TPswgJ:https://www.twblogs.net/a/5d66dca4bd9eee541c336227+&amp;cd=1&amp;hl=zh-CN&amp;ct=clnk&amp;gl=hk</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    elias yin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://eliasyin.github.io/2020/10/24/stanfordcorenlp/" title="stanfordcorenlp">https://eliasyin.github.io/2020/10/24/stanfordcorenlp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/24/excepted-ptr-umat-for-argument-img/" rel="next" title="excepted_ptr_umat_for_argument_img">
+                <i class="fa fa-chevron-left"></i> excepted_ptr_umat_for_argument_img
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/24/gpu-is-lost/" rel="prev" title="gpu_is_lost">
+                gpu_is_lost <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.jpg"
+                alt="elias yin" />
+            
+              <p class="site-author-name" itemprop="name">elias yin</p>
+              <p class="site-description motion-element" itemprop="description">记录•分享</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#stanfordcorenlp"><span class="nav-number">1.</span> <span class="nav-text">stanfordcorenlp</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">elias yin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux,something interesting," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="远游的房间" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="起因：在公司时不能正常访问基地内的服务器，非常烦人，所以用了下边的办法解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="raspi_nat_ddns">
+<meta property="og:url" content="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/index.html">
+<meta property="og:site_name" content="远游的房间">
+<meta property="og:description" content="起因：在公司时不能正常访问基地内的服务器，非常烦人，所以用了下边的办法解决">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/raspi.jpg">
+<meta property="article:published_time" content="2020-10-24T12:26:19.000Z">
+<meta property="article:modified_time" content="2020-10-24T12:59:24.041Z">
+<meta property="article:author" content="elias yin">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="something interesting">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/raspi.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/"/>
+
+
+
+
+
+  <title>raspi_nat_ddns | 远游的房间</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">远游的房间</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="elias yin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远游的房间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">raspi_nat_ddns</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-24T20:26:19+08:00">
+                2020-10-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-10-24T20:59:24+08:00">
+                2020-10-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+		
+		  <span class="post-meta-divider">|</span>
+		  <span id="busuanzi_value_page_pv"></span>次阅读
+		
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>起因：在公司时不能正常访问基地内的服务器，非常烦人，所以用了下边的办法解决</p>
+<a id="more"></a>
+
+<blockquote>
+<p>内网穿透本地pc篇</p>
+</blockquote>
+<h1 id="树莓派内网穿透"><a href="#树莓派内网穿透" class="headerlink" title="树莓派内网穿透"></a>树莓派内网穿透</h1><h3 id="内网穿透设置"><a href="#内网穿透设置" class="headerlink" title="内网穿透设置"></a>内网穿透设置</h3><p>内网穿透的方法有很多，我找了一个免费的方法ngrok，不需要自行购买云服务器，只要手头有一个树莓派即可。ngrok是一个国外开源的项目，使用一个外网服务器作为中转站，实现内网穿透。<br>首先访问<a href="http://www.ittun.com/" target="_blank" rel="noopener">ittun</a>下载树莓派所需的arm版本<code>linux-arm</code>，然后解压缩。命令行切换到这个目录下，我这里是<code>/home/pi/Downloads/linuxarm</code><br>然后给文件夹添加可执行权限，并进入文件夹，编辑配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 linuxarm/</span><br><span class="line"><span class="built_in">cd</span> linuxarm/</span><br><span class="line">nano config.yml</span><br></pre></td></tr></table></figure>
+
+<p>编辑配置文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server_addr: <span class="string">"tcp.ittun.com:44433"</span>  // 这一句是必须要这么写，代表端口转发的服务器地址和端口。</span><br><span class="line">tunnels: </span><br><span class="line">    ssh:                            // 代表ssh登录树莓派</span><br><span class="line">       remote_port: 51066           // 远程ssh登录树莓派时要访问的端口</span><br><span class="line">       proto:</span><br><span class="line">         tcp: <span class="string">":22"</span>                 // 这个代表服务器转发到树莓派的端口，如果是ssh就是22端口</span><br><span class="line">    desk:                           // 代表远程桌面</span><br><span class="line">       remote_port: 52664           // 这个是远程访问远程桌面要访问的端口</span><br><span class="line">       proto:</span><br><span class="line">       // 如果是使 xrdp 来访问远程桌面的话树莓派就是 3389 的端口</span><br><span class="line">       //如果是使用 vnc 远程访问树莓派的话，这里就要填写 vnc 的远程端口。</span><br><span class="line">         tcp: <span class="string">":5900"</span></span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意的是ssh下的remote_port是任意指定的，当然为了避免与系统使用的端口冲突，最好用大一些的端口号(1024~65536), proto就是ssh的端口一般是22; desk是远程桌面访问，和ssh的区别就是desk访问有图形化的界面，remote_port同ssh，proto应当与树莓派使用的远程桌面软件的端口一致，这个是可选的。<br>另外需要注意的是编辑config.yml时不要使用tab，Yml格式不支持tab，使用的话会报错。<br>完成上边的设置之后就可以启动ngrok，测试内网穿透</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./ngrok -config config.yml start ssh <span class="comment">#只开启ssh的内网穿透</span></span><br><span class="line">./ngrok -config config.yml start ssh desk <span class="comment">#同时开启ssh和desk的内网穿透</span></span><br></pre></td></tr></table></figure>
+
+<p>pc端(可以连接到手机热点或者其他与树莓派不在一个网段的网络上)运行下边的指令以连接树莓派(这里ssh的端口要与上边的配置一致)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh pi@tcp.ittun.com -p51066</span><br></pre></td></tr></table></figure>
+
+<p>连接成功的输出：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Linux raspberrypi <span class="number">4.19</span><span class="number">.66</span>-v7+ #<span class="number">1253</span> SMP Thu Aug <span class="number">15</span> <span class="number">11</span>:<span class="number">49</span>:<span class="number">46</span> BST <span class="number">2019</span> armv7l</span><br><span class="line">Hello</span><br><span class="line"></span><br><span class="line">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms <span class="keyword">for</span> each program are described <span class="keyword">in</span> the</span><br><span class="line">individual files <span class="keyword">in</span> /usr/share/doc<span class="comment">/*/copyright.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span></span><br><span class="line"><span class="comment">permitted by applicable law.</span></span><br><span class="line"><span class="comment">Last login: Thu Mar  5 10:08:25 2020</span></span><br></pre></td></tr></table></figure>
+
+<p>此时树莓派的显示：</p>
+<img src="/2020/10/24/raspi-nat-ddns/raspi.jpg" class="">
+
+<p>这说明内网穿透的设置已经成功啦！之后在企业就可以把树莓派作为跳板来访问基地的服务器啦！</p>
+<h3 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h3><p>上边内网穿透已经设置成功，但是如果每次启动树莓派都要连接屏幕，手动启动ngrok岂不是很繁琐？所以尝试实现ngrok开机自启动。</p>
+<p>在<code>/home/pi/Downloads/linuxarm</code>目录下创建ngrok.sh文件，内容是：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">path</span>=/home/<span class="built_in">pi</span>/Downloads/linuxarm</span><br><span class="line">nohup $<span class="built_in">path</span>/ngrok -<span class="built_in">config</span> $<span class="built_in">path</span>/<span class="built_in">config</span>.yml start ssh desk</span><br></pre></td></tr></table></figure>
+
+<p>运行这个文件就可以直接启动ngrok，接下来还要将这个文件注册为一个服务，让他能够开机自动运行。<br>在<code>/etc/init.d/</code>目录下创建ngrok文件，内容是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:          ngrok</span></span><br><span class="line"><span class="comment"># Required-Start:    $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="comment"># Required-Stop:     $local_fs $remote_fs $network $syslog</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: starts the ngrok web server</span></span><br><span class="line"><span class="comment"># Description:       starts nginx using start-stop-daemon</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line">ngrok_path=/home/pi/Downloads/linuxarm</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">start</span></span>()&#123;</span><br><span class="line"> <span class="built_in">echo</span> <span class="string">"start ngrok service.."</span>;</span><br><span class="line"> sh <span class="variable">$&#123;ngrok_path&#125;</span>/ngrok.sh;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">stop</span></span>()&#123;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"stop ngrok service.."</span>;</span><br><span class="line">killall -9 ngrok;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">restart</span></span>()&#123;</span><br><span class="line">killall -9 ngrok  &amp;&amp; start;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        start</span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        stop</span><br><span class="line">        ;;</span><br><span class="line">    restart)</span><br><span class="line">        restart</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> (start|stop|restart)"</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<p>编写完ngrok.sh后添加为服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig ngrok on</span><br></pre></td></tr></table></figure>
+
+<p>启动服务并查看其状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service ngrok start</span><br><span class="line">service ngrok status</span><br></pre></td></tr></table></figure>
+
+<p>注意第一行<code>#!/bin/sh</code>不要漏了，否则ngrok服务无法启动。。并且会返回奇怪的错误。。。这个地方浪费了我两个多小时。。。。。。</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p><code>ssh: connect to host tcp.ittun.com port 51066: Connection refused</code></p>
+<h3 id="further-to-do"><a href="#further-to-do" class="headerlink" title="further to do"></a>further to do</h3><p>检测到错误能够自动尝试重新启动服务</p>
+<p><a href="http://yzkos.com/pi/2017/05/raspberry-pi-ngrok/" target="_blank" rel="noopener">使用ngrok免费给树莓派进行内网穿透，同样适用于其他系统的电脑或主机-Yzk博客</a><br><a href="http://www.ittun.com/" target="_blank" rel="noopener">ngrok国内服务器 | ITTUN</a><br><a href="https://wwww.lvmoo.com/29.love" target="_blank" rel="noopener">树莓派Ngrok开机自启动实现（1.7版本） - 凯の秘密基地</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    elias yin
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/" title="raspi_nat_ddns">https://eliasyin.github.io/2020/10/24/raspi-nat-ddns/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/something-interesting/" rel="tag"># something interesting</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/25/matplotlib%E7%BB%98%E5%88%B6%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%87%BD%E6%95%B0%E5%8C%BA%E5%9F%9F/" rel="next" title="matplotlib绘制线性规划函数区域">
+                <i class="fa fa-chevron-left"></i> matplotlib绘制线性规划函数区域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/24/ngrok-server/" rel="prev" title="ngrok_server">
+                ngrok_server <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.jpg"
+                alt="elias yin" />
+            
+              <p class="site-author-name" itemprop="name">elias yin</p>
+              <p class="site-description motion-element" itemprop="description">记录•分享</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树莓派内网穿透"><span class="nav-number">1.</span> <span class="nav-text">树莓派内网穿透</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内网穿透设置"><span class="nav-number">1.0.1.</span> <span class="nav-text">内网穿透设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置开机自启动"><span class="nav-number">1.0.2.</span> <span class="nav-text">设置开机自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题解决"><span class="nav-number">1.0.3.</span> <span class="nav-text">问题解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#further-to-do"><span class="nav-number">1.0.4.</span> <span class="nav-text">further to do</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">elias yin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
